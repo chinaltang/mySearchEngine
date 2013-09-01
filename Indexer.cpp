@@ -22,8 +22,6 @@
 
 Indexer::Indexer(const string& crawledDir, const bool& isPureEnglishIndex):m_crawledDir(crawledDir)//,m_isPureEnglishIndex(isPureEnglishIndex)
 {
-//	get_time_string(m_indexedDir);
-//	m_indexedDir.append("_indexed");
 }
 
 
@@ -94,11 +92,6 @@ int Indexer::get_text_from_html(const string& fileAbsolutePath, string& text)
 	istreambuf_iterator<char> beginIter(fsFileContent), endIter;
 	fileContent = string(beginIter, endIter);
 	
-//	int fileLength = 0;
-//	fsFileContent.seekg(0, fsFileContent.end);
-//	fileLength = fsFileContent.tellg();
-//	fsFileContent.seekg(0, fsFileContent.beg);
-
 	string tagBefore, tagAfter;
 	size_t posTagBefore, posTagAfter, posStart = 0;
 
@@ -175,7 +168,6 @@ int Indexer::create_index(const string& crawledDir, const DOC_SET& docSet, POSTI
 				postingIndex.insert(pair<WORD, POSTING_LIST>(*tokIter, tmpPostingList));
 			}
 		}//end for
-//		if(m_isPureEnglishIndex)
 		
 		docSetIter++;
 	}//end while
@@ -224,19 +216,6 @@ size_t Indexer::find_html_tag(const string& pageContent, string& tag, const size
 
 	return tagStart;
 }
-
-/*
-inline unsigned int get_doc_id(const DOC_ID& doc_id)
-{
-	return doc_id&0x00FFFFFF;
-}
-
-inline unsigned int increase_tf(DOC_ID& doc_id)
-{
-	doc_id = doc_id + 0x01000000;
-	return doc_id;
-}
-*/
 
 
 int Indexer::start_index()
@@ -340,7 +319,6 @@ int Indexer::load_index(const string& idxFileAbsolutePath, const string& dstFile
 Indexer::POSTING_INDEX::iterator Indexer::do_query(const string& keyWord)
 {
 	POSTING_INDEX::iterator postingIndexIter = m_postingIndex.find(keyWord);
-//	if(postingIndexIter == m_postingIndex.end())
 	
 	return postingIndexIter;
 }
@@ -377,20 +355,6 @@ int Indexer::load_index(const string& indexedDir)
 {
 //To be realized
 	cout<<"Not realized"<<endl;
-/*
-	string tmpIndexDir = indexedDir;
-	if(*(tmpIndexDir.end() - 1) != '/')
-	{
-		tmpIndexDir.append("/");
-	}
-
-	string timeStr;
-	get_time_string(timeStr);
-	string postingIndexFileAbsolutePath;
-	postingIndexFileAbsolutePath.append(tmpIndexDir).append(timeStr).append("_indexed").append(".idx");
-
-	string docSetFileAbsolutePath;
-	docSetFileAbsolutePath.append(tmpIndexDir).append(timeStr).append("_indexed").append(".dlt");
-*/
+	
 	return -1;	
 }
