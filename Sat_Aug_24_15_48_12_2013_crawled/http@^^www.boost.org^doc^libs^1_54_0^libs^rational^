@@ -1,0 +1,75 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Boost Rational Number Library - 1.54.0</title>
+<link rel="icon" href="/favicon.ico" type="image/ico"><link rel="stylesheet" type="text/css" href="/style-v2/section-basic.css"></head>
+
+<body bgcolor="#FFFFFF" text="#000000">  <div id="boost-common-heading-doc">
+    <div class="heading-inner">
+  <div class="heading-placard"></div>
+
+  <h1 class="heading-title">
+  <a href="/">
+  <img src="/gfx/space.png" alt= "Boost C++ Libraries" class="heading-logo" />
+  <span class="heading-boost">Boost</span>
+  <span class="heading-cpplibraries">C++ Libraries</span>
+  </a></h1>
+
+  <p class="heading-quote">
+  <q>...one of the most highly
+  regarded and expertly designed C++ library projects in the
+  world.</q> <span class="heading-attribution">&mdash; <a href=
+  "http://www.gotw.ca/" class="external">Herb Sutter</a> and <a href=
+  "http://en.wikipedia.org/wiki/Andrei_Alexandrescu" class="external">Andrei
+  Alexandrescu</a>, <a href=
+  "http://safari.awprofessional.com/?XmlId=0321113586" class="external">C++
+  Coding Standards</a></span></p>
+</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33761719-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </div>
+
+  <div id="boost-common-heading-doc-spacer"></div>
+
+
+
+
+<h1>Rational Number library</h1>
+
+<p>The header rational.hpp provides an implementation of rational numbers.
+The implementation is template-based, in a similar manner to the standard
+complex number class.</p>
+
+<p>This implementation is intended for general use. If you are a number
+theorist, or otherwise have very stringent requirements, you would be advised
+to use one of the more specialist packages available.</p>
+
+<ul>
+  <li><a href="rational.html">Documentation</a> (HTML).</li>
+  <li>Header <a href="../../boost/rational.hpp">rational.hpp</a>.</li>
+  <li>See the <a href="rational.html">documentation</a> for links to sample programs.</li>
+  <li>Submitted by <a href="/people/paul_moore.htm"> Paul Moore</a>.</li>
+</ul>
+
+<p>Revised&nbsp; December 14, 1999</p>
+
+<p>© Copyright Paul Moore 1999. Permission to copy, use, modify, sell
+and distribute this document is granted provided this copyright notice
+appears in all copies. This document is provided &quot;as is&quot; without
+express or implied warranty, and with no claim as to its suitability for
+any purpose.</p>
+</body>
+</html>

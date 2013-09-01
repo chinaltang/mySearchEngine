@@ -1,0 +1,772 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <title>Running Boost Regression Tests</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+  <link rel="icon" href="/favicon.ico" type="image/ico" />
+  <link rel="stylesheet" type="text/css" href=
+  "/style-v2/section-development.css" />
+  <!--[if IE 7]> <style type="text/css"> body { behavior: url(/style-v2/csshover3.htc); } </style> <![endif]-->
+</head><!--
+Note: Editing website content is documented at:
+http://www.boost.org/development/website_updating.html
+-->
+
+<body>
+  <div id="heading">
+    <div class="heading-inner">
+  <div class="heading-placard"></div>
+
+  <h1 class="heading-title">
+  <a href="/">
+  <img src="/gfx/space.png" alt= "Boost C++ Libraries" class="heading-logo" />
+  <span class="heading-boost">Boost</span>
+  <span class="heading-cpplibraries">C++ Libraries</span>
+  </a></h1>
+
+  <p class="heading-quote">
+  <q>...one of the most highly
+  regarded and expertly designed C++ library projects in the
+  world.</q> <span class="heading-attribution">&mdash; <a href=
+  "http://www.gotw.ca/" class="external">Herb Sutter</a> and <a href=
+  "http://en.wikipedia.org/wiki/Andrei_Alexandrescu" class="external">Andrei
+  Alexandrescu</a>, <a href=
+  "http://safari.awprofessional.com/?XmlId=0321113586" class="external">C++
+  Coding Standards</a></span></p>
+</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33761719-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </div>
+
+  <div id="body">
+    <div id="body-inner">
+      <div id="content">
+        <div class="section" id="intro">
+          <div class="section-0">
+            <div class="section-title">
+              <h1>Running Boost Regression Tests</h1>
+            </div>
+
+            <div class="section-title">
+              <h2>Running Regression Tests Locally</h2>
+            </div>
+
+            <div class="section-title">
+              <p><strong><em>It's easy to run regression tests on your Boost
+              distribution.</em></strong></p>
+
+              <p>To run a library's regression tests, run Boost's <a href=
+              "/boost-build2/"><tt>bjam</tt></a> utility from that library's
+              <tt>libs/<em>&lt;library&gt;</em>/test</tt> directory. To run a
+              single test, specify its name (as found in Jamfile.v2) on the
+              command line.</p>
+
+              <p>See the <a href=
+              "/doc/libs/release/more/getting_started/index.html">Getting
+              Started guide</a> for help building or downloading
+              <tt>bjam</tt> for your platform, and navigating your Boost
+              distribution.</p>
+
+              <p>To run every library's regression tests, run <tt>bjam</tt>
+              from Boost's <tt>/status</tt> directory.</p>
+
+              <p>To run Boost.Build's regression tests, run "<tt>python
+              test_all.py</tt>" from Boost's <tt>tools/build/v2/test</tt>
+              directory. (Python 2.3 &le; version &lt; 3.0 required.)</p>
+            </div>
+
+            <div class="section-title">
+              <h2>Running Boost's Automated Regression and Reporting</h2>
+            </div>
+
+            <div class="section-body">
+              <p>This runs all regressions and reports the results back to
+              the Boost community.</p>
+
+              <h3>Requirements</h3>
+
+              <ul>
+                <li>Python (2.3 &le; version &lt; 3.0).</li>
+
+                <li>Subversion 1.4 or later (optional).</li>
+
+                <li>At least 5 gigabytes of disk space per compiler to be
+                tested.</li>
+              </ul>
+
+              <h3>Step by step instructions</h3>
+
+              <ol>
+                <li>Create a new directory for the branch you want to
+                test.</li>
+
+                <li>Download the <a href=
+                "http://svn.boost.org/svn/boost/trunk/tools/regression/src/run.py">
+                run.py</a> script into that directory.</li>
+
+                <li>
+                  <p>Run "<code>python run.py [options] [commands]</code>"
+                  with at minimum the two options:</p>
+
+                  <ul>
+                    <li><tt>--runner</tt> - Your choice of name that
+                    identifies your results in the reports <sup><a href=
+                    "#runnerid1">1</a>, <a href=
+                    "#runnerid2">2</a></sup>.</li>
+
+                    <li><tt>--toolsets</tt> - The toolset(s) you want to test
+                    with <sup><a href="#toolsets">3</a></sup>.</li>
+                  </ul>
+
+                  <p>For example:</p><tt>python run.py --runner=Metacomm
+                  --toolsets=gcc-4.2.1,msvc-8.0</tt>
+                </li>
+              </ol>
+
+              <p><strong>Note</strong>: If you are behind a firewall/proxy
+              server, everything should still "just work". In the rare cases
+              when it doesn't, you can explicitly specify the proxy server
+              parameters through the <tt>--proxy</tt> option, e.g.:</p>
+              <pre>
+python run.py ... <strong>--proxy=http://www.someproxy.com:3128</strong>
+</pre>
+
+              <h3>Options</h3>
+              <pre>
+commands: cleanup, collect-logs, get-source, get-tools, patch, regression,
+setup, show-revision, test, test-boost-build, test-clean, test-process, test-
+run, update-source, upload-logs
+
+Options:
+  -h, --help            show this help message and exit
+  --runner=RUNNER       runner ID (e.g. 'Metacomm')
+  --comment=COMMENT     an HTML comment file to be inserted in the reports
+  --tag=TAG             the tag for the results
+  --toolsets=TOOLSETS   comma-separated list of toolsets to test with
+  --libraries=LIBRARIES
+                        comma separated list of libraries to test
+  --incremental         do incremental run (do not remove previous binaries)
+  --timeout=TIMEOUT     specifies the timeout, in minutes, for a single test
+                        run/compilation
+  --bjam-options=BJAM_OPTIONS
+                        options to pass to the regression test
+  --bjam-toolset=BJAM_TOOLSET
+                        bootstrap toolset for 'bjam' executable
+  --pjl-toolset=PJL_TOOLSET
+                        bootstrap toolset for 'process_jam_log' executable
+  --platform=PLATFORM   
+  --user=USER           Boost SVN user ID
+  --local=LOCAL         the name of the boost tarball
+  --force-update        do an SVN update (if applicable) instead of a clean
+                        checkout, even when performing a full run
+  --have-source         do neither a tarball download nor an SVN update; used
+                        primarily for testing script changes
+  --ftp=FTP             FTP URL to upload results to.
+  --proxy=PROXY         HTTP proxy server address and port
+                        (e.g.'http://www.someproxy.com:3128')
+  --ftp-proxy=FTP_PROXY
+                        FTP proxy server (e.g. 'ftpproxy')
+  --dart-server=DART_SERVER
+                        the dart server to send results to
+  --debug-level=DEBUG_LEVEL
+                        debugging level; controls the amount of debugging
+                        output printed
+  --send-bjam-log       send full bjam log of the regression run
+  --mail=MAIL           email address to send run notification to
+  --smtp-login=SMTP_LOGIN
+                        STMP server address/login information, in the
+                        following form: &lt;user&gt;:&lt;password&gt;@&lt;host&gt;[:&lt;port&gt;]
+  --skip-tests          do not run bjam; used for testing script changes
+</pre>
+
+              <p>To test trunk use "<code>--tag=trunk</code>" (the default),
+              and to test the release use
+              "<code>--tag=branches/release</code>". Or substitute any Boost
+              tree of your choice.</p>
+
+              <h3>Details</h3>
+
+              <p>The regression run procedure will:</p>
+
+              <ul>
+                <li>Download the most recent regression scripts.</li>
+
+                <li>Download the designated testing tool sources including
+                Boost.Jam, Boost.Build, and the various regression
+                programs.</li>
+
+                <li>Download the most recent from the <a href=
+                "/users/download/#repository">Boost Subversion Repository</a>
+                into the subdirectory <tt>boost</tt>.</li>
+
+                <li>Build <tt>bjam</tt> and <tt>process_jam_log</tt> if
+                needed. (<tt>process_jam_log</tt> is a utility, which
+                extracts the test results from the log file produced by
+                Boost.Build).</li>
+
+                <li>Run regression tests, process and collect the
+                results.</li>
+
+                <li>Upload the results to a common FTP server.</li>
+              </ul>
+
+              <p>The report merger process running continuously will merge
+              all submitted test runs and publish them at <a href=
+              "testing.html#RegressionTesting">various locations</a>.</p>
+
+              <h3>Advanced use</h3>
+
+              <h3>Providing detailed information about your environment</h3>
+
+              <p>Once you have your regression results displayed in the
+              Boost-wide reports, you may consider providing a bit more
+              information about yourself and your test environment. This
+              additional information will be presented in the reports on a
+              page associated with your runner ID.</p>
+
+              <p>By default, the page's content is just a single line coming
+              from the <tt>comment.html</tt> file in your <tt>run.py</tt>
+              directory, specifying the tested platform. You can put online a
+              more detailed description of your environment, such as your
+              hardware configuration, compiler builds, and test schedule, by
+              simply altering the file's content. Also, please consider
+              providing your name and email address for cases where Boost
+              developers have questions specific to your particular set of
+              results.</p>
+
+              <h3>Incremental runs</h3>
+
+              <p>You can run <tt>run.py</tt> in <a href=
+              "#incremental">incremental mode</a> by simply passing it an
+              identically named command-line flag:</p>
+              <pre>
+python run.py ... <strong>--incremental</strong>
+</pre>
+
+              <h3>Getting sources from Tarball</h3>
+
+              <p>By default the sources are obtained from the <a href=
+              "/users/download/#repository">Boost Subversion Repository</a>
+              and we prefer testers use SVN. But if you can't have an SVN
+              client installed you can obtain the sources as tarballs
+              (<tt>*.tar.gz</tt>). To indicate this pass an empty user to
+              <tt>run.py</tt>:</p>
+              <pre>
+python run.py ... <strong>--user=</strong>
+</pre>
+
+              <p><strong>Note</strong>: Both methods to obtain the sources
+              will get the latest code. This is accomplished by building the
+              tarball on-demand from the SVN sources.</p>
+
+              <h3>Patching Boost sources</h3>
+
+              <p>You might encounter an occasional need to make local
+              modifications to the Boost codebase before running the tests,
+              without disturbing the automatic nature of the regression
+              process. To implement this under <tt>regression.py</tt>:</p>
+
+              <ol>
+                <li>Codify applying the desired modifications to the sources
+                located in the <tt>./boost</tt> subdirectory in a single
+                executable script named <tt>patch_boost</tt>
+                (<tt>patch_boost.bat</tt> on Windows).</li>
+
+                <li>Place the script in the <tt>run.py</tt> directory.</li>
+              </ol>
+
+              <p>The driver will check for the existence of the
+              <tt>patch_boost</tt> script, and, if found, execute it after
+              obtaining the Boost sources.</p>
+
+              <h3>Feedback</h3>
+
+              <p>Please send all comments/suggestions regarding this document
+              and the testing procedure itself to the <a href=
+              "/community/groups.html#testing">Boost Testing list</a>.</p>
+
+              <h3>Notes</h3>
+
+              <p><a id="runnerid1" name="runnerid1">[1]</a> If you are
+              running regressions interlacingly with a different set of
+              compilers (e.g. for Intel in the morning and GCC at the end of
+              the day), you need to provide a <em>different</em> runner id
+              for each of these runs, e.g. <tt>your_name-intel</tt>, and
+              <tt>your_name-gcc</tt>.</p>
+
+              <p><a id="runnerid2" name="runnerid2">[2]</a> The limitations
+              of the reports' format/medium impose a direct dependency
+              between the number of compilers you are testing with and the
+              amount of space available for your runner id. If you are
+              running regressions for a single compiler, please make sure to
+              choose a short enough id that does not significantly disturb
+              the reports' layout. You can also use spaces in the runner ID
+              to allow the reports to wrap the name to fit.</p>
+
+              <p><a id="toolsets" name="toolsets">[3]</a> If
+              <tt>--toolsets</tt> option is not provided, the script will try
+              to use the platform's default toolset (<tt>gcc</tt> for most
+              Unix-based systems).</p>
+
+              <p><a id="incremental" name="incremental">[4]</a> By default,
+              the script runs in what is known as <em>full mode</em>: on each
+              <tt>run.py</tt> invocation all the files that were left in
+              place by the previous run &mdash; including the binaries for
+              the successfully built tests and libraries &mdash; are deleted,
+              and everything is rebuilt once again from scratch. By contrast,
+              in <em>incremental mode</em> the already existing binaries are
+              left intact, and only the tests and libraries which source
+              files has changed since the previous run are re-built and
+              re-tested.</p>
+
+              <p>The main advantage of incremental runs is a significantly
+              shorter turnaround time, but unfortunately they don't always
+              produce reliable results. Some type of changes to the codebase
+              (changes to the bjam testing subsystem in particular) often
+              require switching to a full mode for one cycle in order to
+              produce trustworthy reports.</p>
+
+              <p>As a general guideline, if you can afford it, testing in
+              full mode is preferable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="sidebar">
+          <div id="get-boost">
+    <h2><a href="/users/download/"><img src="/gfx/space.png" alt=
+    "Get Boost" /></a></h2>
+  </div>
+
+  <div id="search">
+<!-- Created at http://www.google.com/cse/ -->
+<div id="cse-search-form" style="width: 100%;">Loading</div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript"> 
+  google.load('search', '1', {language : 'en'});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl('011577717147771266991:jigzgqluebe');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.enableSearchboxOnly("http://google.com/cse?cx=011577717147771266991:jigzgqluebe");    
+    customSearchControl.draw('cse-search-form', options);
+  }, true);
+</script>
+<link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
+  </div>
+
+
+          <div id="menu">
+    <ul>
+      <li id="welcome-section-menu">
+        <h4><a href="/" class="internal">Welcome <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/doc/libs/release/more/getting_started/index.html" class=
+    "internal">Getting Started <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/download/" class="internal">Download <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/doc/libs/">Libraries <span class="link">&gt;</span></a></li>
+
+    <li><a href="/community/groups.html">Mailing Lists <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/development/bugs.html" class="internal">Reporting and Fixing
+    Bugs<span class="link">&gt;</span></a></li>
+
+    <li><a href="https://svn.boost.org/trac/boost/" class="external">Wiki<span class=
+    "link">&gt;</span></a></li>
+  </ul>
+</li>
+
+      <li id="boost-section-menu">
+        <h4><a href="/users/index.html" class="internal">Introduction <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/users/download/" class="internal">Download <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/news/" class="internal">News <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/history/" class="internal">Version History
+    <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/license.html" class="internal">License <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/people.html" class="internal">People <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/bibliography.html" class="internal">Bibliography
+    <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/uses.html" class="internal">Who's Using Boost
+    <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/faq.html" class="internal">FAQ <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/proposal.pdf" class="internal">How Boost Started <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/map.html" class="internal">Index <span class=
+    "link">&gt;</span></a></li>
+  </ul>
+</li>
+
+      <li id="community-section-menu">
+        <h4><a href="/community/index.html">Community <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/community/groups.html">Discussion Groups <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/policy.html">Discussion Policy <span class=
+    "link">&gt;</span></a></li>
+
+    <li>
+      <a href="/community/cpp.html">C++ <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/committee.html">Committee Meetings
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/generic_programming.html">Generic Progamming
+        Techniques <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/error_handling.html">Error and Exception
+        Handling <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/exception_safety.html">Exception-Safety in
+        Generic Components <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/counted_body.html">Counted Body Techniques
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href=
+        "/community/implementation_variations.html">Implementation Variations
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/feature_model_diagrams.html">Feature Model
+        Diagrams <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="/community/acknowledgements.html">Acknowledgements <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/groups.html">Mailing Lists <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/moderators.html">Moderators <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/requests.html">Requesting a New Feature
+    <span class="link">&gt;</span></a></li>
+
+    <li>
+      <a href="/community/reviews.html">Reviews <span class=
+      "link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/review_schedule.html">Schedule <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="/community/sandbox.html">Sandbox <span class=
+    "link">&gt;</span></a></li>
+
+    <li>
+      <a href="/community/irc.html">IRC <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/irc_stats_soc.php">Boost SoC Stats
+        <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="/community/gsoc.html">Google Summer of Code <span class=
+      "link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/gsoc_2006_boost_overview.html">2006 Overview
+        <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="http://cppnow.org" target="_blank">C++Now <span class=
+    "link">&gt;</span></a></li>
+
+  </ul>
+</li>
+
+      <li id="development-section-menu">
+        <h4><a href="/development/index.html">Development <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li>
+      <a href="/development/submissions.html">Submissions <span class=
+      "link">&gt;</span></a>
+    </li>
+
+    <li><a href="/development/bugs.html" class="internal">Reporting and Fixing
+    Bugs<span class="link">&gt;</span></a></li>
+
+    <li>
+      <a href="/development/testing.html">Testing <span class=
+      "link">&gt;</span></a>
+
+      <ul>
+        <li><a href=
+        "/development/tests/release/developer/summary.html">Release Summary
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href=
+        "/development/tests/release/developer/issues.html">Release Issues
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/tests/trunk/developer/summary.html">Trunk
+        Summary <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/tests/trunk/developer/issues.html">Trunk
+        Issues <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/running_regression_tests.html">Running
+        Regression Tests <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="/development/requirements.html">Requirements and Guidelines
+    <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/development/test.html">Test policy <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/header.html">Header policy <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/separate_compilation.html">Separate Source
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/reuse.html">Library Reuse <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/int_const_guidelines.html">Coding
+        Guidelines for Integral Constant Expressions <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li>
+      <h3 class="heading">Website</h3>
+
+      <ul>
+        <li><a href="/development/website_updating.html">Updating
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/exemplar.html">Exemplar <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/design_faq.html">Design FAQ <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/webcheck/index.html">Self Check <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+      <li id="documentation-section-menu">
+        <h4><a href="/doc/" class="internal">Documentation <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/doc/libs/release/more/getting_started/">Getting Started
+    <span class="link">&gt;</span></a></li>
+
+    <li>
+      <a href="/doc/libs">Libraries <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/doc/libs/1_54_0/" rel="nofollow">1.54.0 - Current
+        Release <span class="link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_53_0/" rel="nofollow">1.53.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_52_0/" rel="nofollow">1.52.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_51_0/" rel="nofollow">1.51.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_50_0/" rel="nofollow">1.50.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_49_0/" rel="nofollow">1.49.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_48_0/" rel="nofollow">1.48.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_47_0/" rel="nofollow">1.47.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_46_1/" rel="nofollow">1.46.1 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_45_0/" rel="nofollow">1.45.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_44_0/" rel="nofollow">1.44.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_43_0/" rel="nofollow">1.43.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_42_0/" rel="nofollow">1.42.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_41_0/" rel="nofollow">1.41.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_40_0/" rel="nofollow">1.40.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_39_0/" rel="nofollow">1.39.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_38_0/" rel="nofollow">1.38.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_37_0/" rel="nofollow">1.37.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_36_0/" rel="nofollow">1.36.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_35_0/" rel="nofollow">1.35.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_34_1/" rel="nofollow">1.34.1 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_34_0/" rel="nofollow">1.34.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_33_1/" rel="nofollow">1.33.1 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_32_0/" rel="nofollow">1.32.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_31_0/" rel="nofollow">1.31.0 <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="/doc/tools.html">Tools <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/boost-build2/">Boost Build <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/regression/index.html">Regression <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/inspect/index.html">Inspect <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/html/boostbook.html">BoostBook <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/quickbook/index.html">QuickBook <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/bcp/index.html">bcp <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/libs/wave/doc/wave_driver.html">Wave <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/auto_index/">AutoIndex <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+    </ul>
+
+    <div class="box-bottom"></div>
+  </div>
+
+      </div>
+
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div id="footer-left">
+      <div id="revised">
+        <p>Revised $Date: 2011-02-27 05:23:42 -0500 (Sun, 27 Feb 2011) $</p>
+      </div>
+
+      <div id="copyright">
+        <p>Copyright Rene Rivera 2007.</p>
+
+        <p>Copyright MetaCommunications, Inc. 2004-2007.</p>
+      </div>  <div id="license">
+    <p>Distributed under the <a href="/LICENSE_1_0.txt" class=
+    "internal">Boost Software License, Version 1.0</a>.</p>
+  </div>
+
+    </div>
+
+    <div id="footer-right">
+        <div id="banners">
+    <p id="banner-xhtml"><a href="http://validator.w3.org/check?uri=referer"
+    class="external">XHTML 1.0</a></p>
+
+    <p id="banner-css"><a href=
+    "http://jigsaw.w3.org/css-validator/check/referer" class=
+    "external">CSS</a></p>
+
+    <p id="banner-osi"><a href=
+    "http://www.opensource.org/docs/definition.php" class="external">OSI
+    Certified</a></p>
+  </div>
+
+    </div>
+
+    <div class="clear"></div>
+  </div>
+</body>
+</html>

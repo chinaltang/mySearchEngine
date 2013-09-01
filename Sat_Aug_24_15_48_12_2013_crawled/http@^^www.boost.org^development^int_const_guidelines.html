@@ -1,0 +1,833 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <title>Coding Guidelines for Integral Constant Expressions</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+  <link rel="icon" href="/favicon.ico" type="image/ico" />
+  <link rel="stylesheet" type="text/css" href=
+  "/style-v2/section-development.css" />
+  <!--[if IE 7]> <style type="text/css"> body { behavior: url(/style/csshover3.htc); } </style> <![endif]-->
+</head><!--
+Note: Editing website content is documented at:
+http://www.boost.org/development/website_updating.html
+-->
+
+<body>
+  <div id="heading">
+    <div class="heading-inner">
+  <div class="heading-placard"></div>
+
+  <h1 class="heading-title">
+  <a href="/">
+  <img src="/gfx/space.png" alt= "Boost C++ Libraries" class="heading-logo" />
+  <span class="heading-boost">Boost</span>
+  <span class="heading-cpplibraries">C++ Libraries</span>
+  </a></h1>
+
+  <p class="heading-quote">
+  <q>...one of the most highly
+  regarded and expertly designed C++ library projects in the
+  world.</q> <span class="heading-attribution">&mdash; <a href=
+  "http://www.gotw.ca/" class="external">Herb Sutter</a> and <a href=
+  "http://en.wikipedia.org/wiki/Andrei_Alexandrescu" class="external">Andrei
+  Alexandrescu</a>, <a href=
+  "http://safari.awprofessional.com/?XmlId=0321113586" class="external">C++
+  Coding Standards</a></span></p>
+</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33761719-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </div>
+
+  <div id="body">
+    <div id="body-inner">
+      <div id="content">
+        <div class="section" id="intro">
+          <div class="section-0">
+            <div class="section-title">
+              <h1>Coding Guidelines for Integral Constant Expressions</h1>
+            </div>
+
+            <div class="section-body">
+              <p>Integral Constant Expressions are used in many places in
+              C++; as array bounds, as bit-field lengths, as enumerator
+              initialisers, and as arguments to non-type template parameters.
+              However many compilers have problems handling integral constant
+              expressions; as a result of this, programming using non-type
+              template parameters in particular can be fraught with
+              difficulty, often leading to the incorrect assumption that
+              non-type template parameters are unsupported by a particular
+              compiler. This short article is designed to provide a set of
+              guidelines and workarounds that, if followed, will allow
+              integral constant expressions to be used in a manner portable
+              to all the compilers currently supported by boost. Although
+              this article is mainly targeted at boost library authors, it
+              may also be useful for users who want to understand why boost
+              code is written in a particular way, or who want to write
+              portable code themselves.</p>
+
+              <h2>What is an Integral Constant Expression?</h2>
+
+              <p>Integral constant expressions are described in section 5.19
+              of the standard, and are sometimes referred to as "compile time
+              constants". An integral constant expression can be one of the
+              following:</p>
+
+              <ol>
+                <li>A literal integral value, for example <code>0u</code> or
+                <code>3L</code>.</li>
+
+                <li>An enumerator value.</li>
+
+                <li>Global integral constants, for example:
+                  <pre>
+const int my_INTEGRAL_CONSTANT = 3;
+</pre>
+                </li>
+
+                <li>Static member constants, for example:
+                  <pre>
+struct myclass
+{ static const int value = 0; };
+</pre>
+                </li>
+
+                <li>Member enumerator values, for example:
+                  <pre>
+struct myclass
+{ enum{ value = 0 }; };
+</pre>
+                </li>
+
+                <li>Non-type template parameters of integral or enumerator
+                type.</li>
+
+                <li>The result of a <code>sizeof</code> expression, for
+                example:
+                  <pre>
+sizeof(foo(a, b, c))
+</pre>
+                </li>
+
+                <li>The result of a <code>static_cast</code>, where the
+                target type is an integral or enumerator type, and the
+                argument is either another integral constant expression, or a
+                floating-point literal.</li>
+
+                <li>The result of applying a binary operator to two integral
+                constant expressions:
+                  <pre>
+INTEGRAL_CONSTANT1 op INTEGRAL_CONSTANT2
+</pre>provided that the operator is not an assignment operator, or comma
+operator.
+                </li>
+
+                <li>The result of applying a unary operator to an integral
+                constant expression:
+                  <pre>
+op INTEGRAL_CONSTANT1
+</pre>provided that the operator is not the increment or decrement operator.
+                </li>
+              </ol>
+
+              <h2>Coding Guidelines</h2>
+
+              <p>The following guidelines are declared in no particular order
+              (in other words you need to obey all of them - sorry!), and may
+              also be incomplete, more guidelines may be added as compilers
+              change and/or more problems are encountered.</p>
+
+              <h3>When declaring constants that are class members always use
+              the macro <code>BOOST_STATIC_CONSTANT.</code></h3>
+              <pre>
+template &lt;class T&gt;
+struct myclass
+{
+   BOOST_STATIC_CONSTANT(int, value = sizeof(T));
+};
+</pre>
+
+              <p>Rationale: not all compilers support inline initialisation
+              of member constants, others treat member enumerators in strange
+              ways (they're not always treated as integral constant
+              expressions). The BOOST_STATIC_CONSTANT macro uses the most
+              appropriate method for the compiler in question.</p>
+
+              <h3>Don't declare integral constant expressions whose type is
+              wider than int.</h3>
+
+              <p>Rationale: while in theory all integral types are usable in
+              integral constant expressions, in practice many compilers limit
+              integral constant expressions to types no wider than
+              <code>int</code>.</p>
+
+              <h3>Don't use logical operators in integral constant
+              expressions; use template meta-programming instead.</h3>
+
+              <p>The header <code>&lt;boost/type_traits/ice.hpp&gt;</code>
+              contains a number of workaround templates, that fulfil the role
+              of logical operators, for example instead of:</p>
+              <pre>
+INTEGRAL_CONSTANT1 || INTEGRAL_CONSTANT2
+</pre>
+
+              <p>Use:</p>
+              <pre>
+::boost::type_traits::ice_or&lt;INTEGRAL_CONSTANT1,INTEGRAL_CONSTANT2&gt;::value
+</pre>
+
+              <p>Rationale: A number of compilers (particularly the Borland
+              and Microsoft compilers), tend to not to recognise integral
+              constant expressions involving logical operators as genuine
+              integral constant expressions. The problem generally only shows
+              up when the integral constant expression is nested deep inside
+              template code, and is hard to reproduce and diagnose.</p>
+
+              <h3>Don't use any operators in an integral constant expression
+              used as a non-type template parameter</h3>
+
+              <p>Rather than:</p>
+              <pre>
+typedef myclass&lt;INTEGRAL_CONSTANT1 ==
+              INTEGRAL_CONSTANT2&gt; mytypedef;
+</pre>
+
+              <p>Use:</p>
+              <pre>
+typedef myclass&lt; some_symbol&gt;
+              mytypedef;
+</pre>
+
+              <p>Where <code>some_symbol</code> is the symbolic name of a an
+              integral constant expression whose value is
+              <code>(INTEGRAL_CONSTANT1 == INTEGRAL_CONSTANT2).</code></p>
+
+              <p>Rationale: the older EDG based compilers (some of which are
+              used in the most recent version of that platform's compiler),
+              don't recognise expressions containing operators as non-type
+              template parameters, even though such expressions can be used
+              as integral constant expressions elsewhere.</p>
+
+              <h3>Always use a fully qualified name to refer to an integral
+              constant expression.</h3>
+
+              <p>For example:</p>
+              <pre>
+<code>typedef</code> myclass&lt; ::boost::is_integral&lt;some_type&gt;::value&gt; mytypedef;
+</pre>
+
+              <p>Rationale: at least one compiler (Borland's), doesn't
+              recognise the name of a constant as an integral constant
+              expression unless the name is fully qualified (which is to say
+              it starts with <code>::</code>).</p>
+
+              <h3>Always leave a space after a '<code>&lt;</code>' and before
+              '<code>::</code>'</h3>
+
+              <p>For example:</p>
+              <pre>
+typedef myclass&lt; ::boost::is_integral&lt;some_type&gt;::value&gt; mytypedef;
+                ^
+                ensure there is space here!
+</pre>
+
+              <p>Rationale: <code>&lt;:</code> is a legal digraph in it's own
+              right, so <code>&lt;::</code> is interpreted as the same as
+              <code>[:</code>.</p>
+
+              <h3>Don't use local names as integral constant expressions</h3>
+
+              <p>Example:</p>
+              <pre>
+template &lt;class T&gt;
+struct foobar
+{
+   BOOST_STATIC_CONSTANT(int, temp = computed_value);
+   typedef myclass&lt;temp&gt; mytypedef;  // error
+};
+</pre>
+
+              <p>Rationale: At least one compiler (Borland's) doesn't accept
+              this.</p>
+
+              <p>Although it is possible to fix this by using:</p>
+              <pre>
+template &lt;class T&gt;
+struct foobar
+{
+   BOOST_STATIC_CONSTANT(int, temp = computed_value);
+   typedef foobar self_type;
+   typedef myclass&lt;(self_type::temp)&gt; mytypedef;  // OK
+};
+</pre>
+
+              <p>This breaks at least one other compiler (VC6), it is better
+              to move the integral constant expression computation out into a
+              separate traits class:</p>
+              <pre>
+template &lt;class T&gt;
+struct foobar_helper
+{
+   BOOST_STATIC_CONSTANT(int, value = computed_value);
+};
+
+template &lt;class T&gt;
+struct foobar
+{
+   typedef myclass&lt; ::foobar_helper&lt;T&gt;::value&gt; mytypedef;  // OK
+};
+</pre>
+
+              <h3>Don't use dependent default parameters for non-type
+              template parameters.</h3>
+
+              <p>For example:</p>
+              <pre>
+template &lt;class T, int I = ::boost::is_integral&lt;T&gt;::value&gt;  // Error can't deduce value of I in some cases.
+struct foobar;
+</pre>
+
+              <p>Rationale: this kind of usage fails for Borland C++. Note
+              that this is only an issue where the default value is dependent
+              upon a previous template parameter, for example the following
+              is fine:</p>
+              <pre>
+template &lt;class T, int I = 3&gt;  // OK, default value is not dependent
+struct foobar;
+</pre>
+
+              <h2>Unresolved Issues</h2>
+
+              <p>The following issues are either unresolved or have fixes
+              that are compiler specific, and/or break one or more of the
+              coding guidelines.</p>
+
+              <h3>Be careful of numeric_limits</h3>
+
+              <p>There are three issues here:</p>
+
+              <ol>
+                <li>The header &lt;limits&gt; may be absent - it is
+                recommended that you never include &lt;limits&gt; directly
+                but use &lt;boost/pending/limits.hpp&gt; instead. This header
+                includes the "real" &lt;limits&gt; header if it is available,
+                otherwise it supplies it's own std::numeric_limits
+                definition. Boost also defines the macro BOOST_NO_LIMITS if
+                &lt;limits&gt; is absent.</li>
+
+                <li>The implementation of std::numeric_limits may be defined
+                in such a way that its static-const members may not be usable
+                as integral constant expressions. This contradicts the
+                standard but seems to be a bug that affects at least two
+                standard library vendors; boost defines
+                BOOST_NO_LIMITS_COMPILE_TIME_CONSTANTS in
+                &lt;boost/config.hpp&gt; when this is the case.</li>
+
+                <li>There is a strange bug in VC6, where the members of
+                std::numeric_limits can be "prematurely evaluated" in
+                template code, for example:</li>
+              </ol>
+              <pre>
+template &lt;class T&gt;
+struct limits_test
+{
+   BOOST_STATIC_ASSERT(::std::numeric_limits&lt;T&gt;::is_specialized);
+};
+</pre>
+
+              <p>This code fails to compile with VC6 even though no instances
+              of the template are ever created; for some bizarre reason
+              <code>::std::numeric_limits&lt;T&gt;::is_specialized</code>
+              always evaluates to false, irrespective of what the template
+              parameter T is. The problem seems to be confined to expressions
+              which depend on std::numeric_limts: for example if you replace
+              <code>::std::numeric_limits&lt;T&gt;::is_specialized</code>
+              with <code>::boost::is_arithmetic&lt;T&gt;::value</code>, then
+              everything is fine. The following workaround also works but
+              conflicts with the coding guidelines:</p>
+              <pre>
+template &lt;class T&gt;
+struct limits_test
+{
+   BOOST_STATIC_CONSTANT(bool, check = ::std::numeric_limits&lt;T&gt;::is_specialized);
+   BOOST_STATIC_ASSERT(check);
+};
+</pre>
+
+              <p>So it is probably best to resort to something like this:</p>
+              <pre>
+template &lt;class T&gt;
+struct limits_test
+{
+#ifdef BOOST_MSVC
+   BOOST_STATIC_CONSTANT(bool, check = ::std::numeric_limits&lt;T&gt;::is_specialized);
+   BOOST_STATIC_ASSERT(check);
+#else
+   BOOST_STATIC_ASSERT(::std::numeric_limits&lt;T&gt;::is_specialized);
+#endif
+};
+</pre>
+
+              <h3>Be careful how you use the sizeof operator</h3>
+
+              <p>As far as I can tell, all compilers treat sizeof expressions
+              correctly when the argument is the name of a type (or a
+              template-id), however problems can occur if:</p>
+
+              <ol>
+                <li>The argument is the name of a member-variable, or a local
+                variable (code may not compile with VC6).</li>
+
+                <li>The argument is an expression which involves the creation
+                of a temporary (code will not compile with Borland C++).</li>
+
+                <li>The argument is an expression involving an overloaded
+                function call (code compiles but the result is a garbage
+                value with Metroworks C++).</li>
+              </ol>
+
+              <h3>Don't use boost::is_convertible unless you have to</h3>
+
+              <p>Since is_convertible is implemented in terms of the sizeof
+              operator, it consistently gives the wrong value when used with
+              the Metroworks compiler, and may not compile with the Borland's
+              compiler (depending upon the template arguments used).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="sidebar">
+          <div id="get-boost">
+    <h2><a href="/users/download/"><img src="/gfx/space.png" alt=
+    "Get Boost" /></a></h2>
+  </div>
+
+  <div id="search">
+<!-- Created at http://www.google.com/cse/ -->
+<div id="cse-search-form" style="width: 100%;">Loading</div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript"> 
+  google.load('search', '1', {language : 'en'});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl('011577717147771266991:jigzgqluebe');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.enableSearchboxOnly("http://google.com/cse?cx=011577717147771266991:jigzgqluebe");    
+    customSearchControl.draw('cse-search-form', options);
+  }, true);
+</script>
+<link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
+  </div>
+
+
+          <div id="menu">
+    <ul>
+      <li id="welcome-section-menu">
+        <h4><a href="/" class="internal">Welcome <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/doc/libs/release/more/getting_started/index.html" class=
+    "internal">Getting Started <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/download/" class="internal">Download <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/doc/libs/">Libraries <span class="link">&gt;</span></a></li>
+
+    <li><a href="/community/groups.html">Mailing Lists <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/development/bugs.html" class="internal">Reporting and Fixing
+    Bugs<span class="link">&gt;</span></a></li>
+
+    <li><a href="https://svn.boost.org/trac/boost/" class="external">Wiki<span class=
+    "link">&gt;</span></a></li>
+  </ul>
+</li>
+
+      <li id="boost-section-menu">
+        <h4><a href="/users/index.html" class="internal">Introduction <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/users/download/" class="internal">Download <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/news/" class="internal">News <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/history/" class="internal">Version History
+    <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/license.html" class="internal">License <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/people.html" class="internal">People <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/bibliography.html" class="internal">Bibliography
+    <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/uses.html" class="internal">Who's Using Boost
+    <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/faq.html" class="internal">FAQ <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/proposal.pdf" class="internal">How Boost Started <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/map.html" class="internal">Index <span class=
+    "link">&gt;</span></a></li>
+  </ul>
+</li>
+
+      <li id="community-section-menu">
+        <h4><a href="/community/index.html">Community <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/community/groups.html">Discussion Groups <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/policy.html">Discussion Policy <span class=
+    "link">&gt;</span></a></li>
+
+    <li>
+      <a href="/community/cpp.html">C++ <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/committee.html">Committee Meetings
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/generic_programming.html">Generic Progamming
+        Techniques <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/error_handling.html">Error and Exception
+        Handling <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/exception_safety.html">Exception-Safety in
+        Generic Components <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/counted_body.html">Counted Body Techniques
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href=
+        "/community/implementation_variations.html">Implementation Variations
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/feature_model_diagrams.html">Feature Model
+        Diagrams <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="/community/acknowledgements.html">Acknowledgements <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/groups.html">Mailing Lists <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/moderators.html">Moderators <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/requests.html">Requesting a New Feature
+    <span class="link">&gt;</span></a></li>
+
+    <li>
+      <a href="/community/reviews.html">Reviews <span class=
+      "link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/review_schedule.html">Schedule <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="/community/sandbox.html">Sandbox <span class=
+    "link">&gt;</span></a></li>
+
+    <li>
+      <a href="/community/irc.html">IRC <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/irc_stats_soc.php">Boost SoC Stats
+        <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="/community/gsoc.html">Google Summer of Code <span class=
+      "link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/gsoc_2006_boost_overview.html">2006 Overview
+        <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="http://cppnow.org" target="_blank">C++Now <span class=
+    "link">&gt;</span></a></li>
+
+  </ul>
+</li>
+
+      <li id="development-section-menu">
+        <h4><a href="/development/index.html">Development <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li>
+      <a href="/development/submissions.html">Submissions <span class=
+      "link">&gt;</span></a>
+    </li>
+
+    <li><a href="/development/bugs.html" class="internal">Reporting and Fixing
+    Bugs<span class="link">&gt;</span></a></li>
+
+    <li>
+      <a href="/development/testing.html">Testing <span class=
+      "link">&gt;</span></a>
+
+      <ul>
+        <li><a href=
+        "/development/tests/release/developer/summary.html">Release Summary
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href=
+        "/development/tests/release/developer/issues.html">Release Issues
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/tests/trunk/developer/summary.html">Trunk
+        Summary <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/tests/trunk/developer/issues.html">Trunk
+        Issues <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/running_regression_tests.html">Running
+        Regression Tests <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="/development/requirements.html">Requirements and Guidelines
+    <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/development/test.html">Test policy <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/header.html">Header policy <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/separate_compilation.html">Separate Source
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/reuse.html">Library Reuse <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/int_const_guidelines.html">Coding
+        Guidelines for Integral Constant Expressions <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li>
+      <h3 class="heading">Website</h3>
+
+      <ul>
+        <li><a href="/development/website_updating.html">Updating
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/exemplar.html">Exemplar <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/design_faq.html">Design FAQ <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/webcheck/index.html">Self Check <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+      <li id="documentation-section-menu">
+        <h4><a href="/doc/" class="internal">Documentation <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/doc/libs/release/more/getting_started/">Getting Started
+    <span class="link">&gt;</span></a></li>
+
+    <li>
+      <a href="/doc/libs">Libraries <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/doc/libs/1_54_0/" rel="nofollow">1.54.0 - Current
+        Release <span class="link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_53_0/" rel="nofollow">1.53.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_52_0/" rel="nofollow">1.52.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_51_0/" rel="nofollow">1.51.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_50_0/" rel="nofollow">1.50.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_49_0/" rel="nofollow">1.49.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_48_0/" rel="nofollow">1.48.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_47_0/" rel="nofollow">1.47.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_46_1/" rel="nofollow">1.46.1 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_45_0/" rel="nofollow">1.45.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_44_0/" rel="nofollow">1.44.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_43_0/" rel="nofollow">1.43.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_42_0/" rel="nofollow">1.42.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_41_0/" rel="nofollow">1.41.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_40_0/" rel="nofollow">1.40.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_39_0/" rel="nofollow">1.39.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_38_0/" rel="nofollow">1.38.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_37_0/" rel="nofollow">1.37.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_36_0/" rel="nofollow">1.36.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_35_0/" rel="nofollow">1.35.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_34_1/" rel="nofollow">1.34.1 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_34_0/" rel="nofollow">1.34.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_33_1/" rel="nofollow">1.33.1 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_32_0/" rel="nofollow">1.32.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_31_0/" rel="nofollow">1.31.0 <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="/doc/tools.html">Tools <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/boost-build2/">Boost Build <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/regression/index.html">Regression <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/inspect/index.html">Inspect <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/html/boostbook.html">BoostBook <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/quickbook/index.html">QuickBook <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/bcp/index.html">bcp <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/libs/wave/doc/wave_driver.html">Wave <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/auto_index/">AutoIndex <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+    </ul>
+
+    <div class="box-bottom"></div>
+  </div>
+
+      </div>
+
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div id="footer-left">
+      <div id="revised">
+        <p>Revised $Date: 2007-10-22 22:55:52 +0100 (Mon, 22 Oct 2007) $</p>
+      </div>
+
+      <div id="copyright">
+        <p>Copyright Dr John Maddock 2001.</p>
+      </div>  <div id="license">
+    <p>Distributed under the <a href="/LICENSE_1_0.txt" class=
+    "internal">Boost Software License, Version 1.0</a>.</p>
+  </div>
+
+    </div>
+
+    <div id="footer-right">
+        <div id="banners">
+    <p id="banner-xhtml"><a href="http://validator.w3.org/check?uri=referer"
+    class="external">XHTML 1.0</a></p>
+
+    <p id="banner-css"><a href=
+    "http://jigsaw.w3.org/css-validator/check/referer" class=
+    "external">CSS</a></p>
+
+    <p id="banner-osi"><a href=
+    "http://www.opensource.org/docs/definition.php" class="external">OSI
+    Certified</a></p>
+  </div>
+
+    </div>
+
+    <div class="clear"></div>
+  </div>
+</body>
+</html>

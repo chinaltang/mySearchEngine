@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Boost CRC Library - 1.54.0</title>
+<link rel="icon" href="/favicon.ico" type="image/ico"><link rel="stylesheet" type="text/css" href="/style-v2/section-basic.css"></head>
+
+<body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">  <div id="boost-common-heading-doc">
+    <div class="heading-inner">
+  <div class="heading-placard"></div>
+
+  <h1 class="heading-title">
+  <a href="/">
+  <img src="/gfx/space.png" alt= "Boost C++ Libraries" class="heading-logo" />
+  <span class="heading-boost">Boost</span>
+  <span class="heading-cpplibraries">C++ Libraries</span>
+  </a></h1>
+
+  <p class="heading-quote">
+  <q>...one of the most highly
+  regarded and expertly designed C++ library projects in the
+  world.</q> <span class="heading-attribution">&mdash; <a href=
+  "http://www.gotw.ca/" class="external">Herb Sutter</a> and <a href=
+  "http://en.wikipedia.org/wiki/Andrei_Alexandrescu" class="external">Andrei
+  Alexandrescu</a>, <a href=
+  "http://safari.awprofessional.com/?XmlId=0321113586" class="external">C++
+  Coding Standards</a></span></p>
+</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33761719-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </div>
+
+  <div id="boost-common-heading-doc-spacer"></div>
+
+
+
+
+<h1>CRC Library</h1>
+
+<p>The header <cite>crc.hpp</cite> provides two implementations of CRC
+(cyclic redundancy code) computation objects and two implementations of
+CRC computation functions.  The implementations are template-based.</p>
+
+<p>The first object implementation is for theoretical use.  It can
+process single bits, but is considered slow for practical use.  The
+second object implementation is byte-oriented and uses look-up
+tables for fast operation.  The optimized implementation should
+be suitable for general use.  The first function implementation uses the
+optimized object.  The second function implementation allows the use of
+a CRC that directly follows its data.</p>
+
+<ul>
+	<li><a href="crc.html">Documentation</a> (HTML).</li>
+	<li>Header <cite><a href="../../boost/crc.hpp">crc.hpp</a></cite>.</li>
+	<li>See the <a href="crc.html">documentation</a> for links to sample
+		programs.</li>
+	<li>Submitted by Daryle Walker.</li>
+</ul>
+
+<hr>
+
+<p>Revised: 14 May 2001</p>
+
+<p>Copyright 2001 Daryle Walker.  Use, modification, and distribution
+are subject to the Boost Software License, Version 1.0.  (See accompanying
+file <a href="../../LICENSE_1_0.txt">LICENSE_1_0.txt</a> or a copy at
+&lt;<a href="/LICENSE_1_0.txt">http://www.boost.org/LICENSE_1_0.txt</a>&gt;.)</p>
+
+</body>
+</html>

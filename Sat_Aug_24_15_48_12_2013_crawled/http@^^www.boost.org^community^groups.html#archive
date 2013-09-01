@@ -1,0 +1,924 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <title>Boost Mailing Lists</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="icon" href="/favicon.ico" type="image/ico" />
+  <link rel="stylesheet" type="text/css" href=
+  "/style-v2/section-community.css" />
+  <!--[if IE 7]> <style type="text/css"> body { behavior: url(/style-v2/csshover3.htc); } </style> <![endif]-->
+</head><!--
+Note: Editing website content is documented at:
+http://www.boost.org/development/website_updating.html
+-->
+
+<body>
+  <div id="heading">
+    <div class="heading-inner">
+  <div class="heading-placard"></div>
+
+  <h1 class="heading-title">
+  <a href="/">
+  <img src="/gfx/space.png" alt= "Boost C++ Libraries" class="heading-logo" />
+  <span class="heading-boost">Boost</span>
+  <span class="heading-cpplibraries">C++ Libraries</span>
+  </a></h1>
+
+  <p class="heading-quote">
+  <q>...one of the most highly
+  regarded and expertly designed C++ library projects in the
+  world.</q> <span class="heading-attribution">&mdash; <a href=
+  "http://www.gotw.ca/" class="external">Herb Sutter</a> and <a href=
+  "http://en.wikipedia.org/wiki/Andrei_Alexandrescu" class="external">Andrei
+  Alexandrescu</a>, <a href=
+  "http://safari.awprofessional.com/?XmlId=0321113586" class="external">C++
+  Coding Standards</a></span></p>
+</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33761719-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </div>
+
+  <div id="body">
+    <div id="body-inner">
+      <div id="content">
+        <div class="section" id="intro">
+          <div class="section-0">
+            <div class="section-title">
+              <h1>Boost Mailing Lists (A.K.A. Discussion Groups)</h1>
+            </div>
+
+            <div class="section-body">
+              <p>The mailing lists are the heart of the Boost community. You
+              may read the lists via full-content email, email digests, or
+              via newsgroup reader.</p>
+
+              <p>Hosting for the mailing lists is donated by the <a href=
+              "http://www.osl.iu.edu/" class="external">Open Systems Lab at
+              Indiana University</a>.</p>
+
+              <p>Access to Boost mailing lists via newsgroup (NNTP) is
+              contributed by <a href="http://www.gmane.org/" class=
+              "external">GMANE</a>.</p><a name="gmane_post" id=
+              "gmane_post"></a><a name="important_notes" id=
+              "important_notes"></a>
+
+              <div class="admonition">
+                <h2>Before Posting</h2>
+
+                <p><strong>Read the <a href="policy.html">Discussion Policy
+                and Guide to Effective Posting</a>.</strong> Doing so will
+                help you to ensure that your post is read by the people who
+                can help you and received in the spirit in which it was
+                intended.</p>
+
+                <p><strong>Subscribe your posting address.</strong> As an
+                anti-spam measure, postings to most Boost mailing lists will
+                only be accepted if the posting's "From:" header contains an
+                email address that is subscribed to the list. If you try to
+                post from an address that isn't subscribed, you will probably
+                get a message that says:</p>
+
+                <blockquote>
+                  <p><tt>You are not allowed to post to this mailing list,
+                  and your message has been automatically rejected. If you
+                  think that your messages are being rejected in error,
+                  contact the mailing list owner at</tt> <i>list
+                  administrator's email address</i>.</p>
+                </blockquote>
+
+                <p>If you need to post from multiple email addresses, you
+                should subscribe each one separately. You can configure your
+                subscription settings for any address to disable mail
+                delivery via each mailing list's web interface.</p>
+
+                <p>Even postings made through the <a href=
+                "http://www.gmane.org" class="external">GMane</a> news server
+                need to be made from subscribed addresses because GMane
+                simply forwards your postings on to the appropriate email
+                list. Don't be fooled by GMane's authentication message that
+                says "you are now authorized to post to this list" after you
+                answer its autogenerated mail; only subscribed addresses may
+                post.</p>
+              </div>
+
+              <ul class="toc">
+                <li>
+                  <a href="#users">Users</a>
+                </li>
+
+                <li>
+                  <a href="#main">Developers</a>
+
+                  <ul>
+                    <li>
+                      <a href="#archive">Archives</a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="#announce">Announce</a>
+                </li>
+
+                <li>
+                  <a href="#interest">Interest</a>
+                </li>
+
+                <li>
+                  <a href="#projects">Project-Specific</a>
+
+                  <ul>
+                    <li>
+                      <a href="#jamboost">Boost.Build</a>
+                    </li>
+
+                    <li>
+                      <a href="#cmake">Boost CMake</a>
+                    </li>
+
+                    <li>
+                      <a href="#cplussig">Python C++-Sig (for
+                      Boost.Python)</a>
+                    </li>
+
+                    <li>
+                      <a href="#langbinding">Language Binding</a>
+                    </li>
+
+                    <li>
+                      <a href="#mpi">Boost.MPI Development</a>
+                    </li>
+
+                    <li>
+                      <a href="#spirit">Boost.Spirit</a>
+                    </li>
+
+                    <li>
+                      <a href="#boostdocs">Boost.Documentation</a>
+                    </li>
+
+                    <li>
+                      <a href="#testing">Testing</a>
+                    </li>
+
+                    <li>
+                      <a href="#ublas">Boost.uBlas (numerics)</a>
+                    </li>
+
+                    <li>
+                      <a href="#thread">Boost.Thread</a>
+                    </li>
+
+                    <li>
+                      <a href="#commit">Subversion Commit messages</a>
+                    </li>
+
+                    <li>
+                      <a href="#translation">Translation Groups</a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a href="#sandbox">Boost Sandbox repository</a>
+                </li>
+
+                <li>
+                  <a href="#IRC">#boost IRC channel</a>
+                </li>
+              </ul>
+
+              <h2><a name="users" id="users"></a>Boost Users mailing list
+              (also available via newsgroup)</h2>
+
+              <p>This list is oriented toward casual users of the Boost
+              libraries. It is a good place to start if you are having
+              trouble getting started with Boost or its individual libraries.
+              Feel free to post both "newbie" and more challenging questions,
+              but please check first to see if there's an appropriate
+              <a href="#projects">Project-Specific</a> list; you'll often get
+              better answers in a forum dedicated to your problem area. This
+              list is relatively low volume (less than 500 per month).
+              Subscribe or unsubscribe at the <a href=
+              "http://lists.boost.org/mailman/listinfo.cgi/boost-users"
+              class="external">Boost Users list home page</a>.</p>
+
+              <p>For those who prefer to participate via an NNTP (<a name=
+              "users_newsgroup" id="users_newsgroup"></a>newsgroup)
+              interface, a gateway to the Boost Users mailing list is
+              available at <a href=
+              "news://news.gmane.org/gmane.comp.lib.boost.user" class=
+              "external">news://news.gmane.org/gmane.comp.lib.boost.user</a>.
+              You can also browse <a href=
+              "http://news.gmane.org/thread.php?group=gmane.comp.lib.boost.user"
+              class="external">Gmane's searchable archive</a>.</p>
+
+              <h2><a name="main" id="main"></a>Boost developers mailing list
+              (also available via newsgroup)</h2>
+
+              <p>This is the main Boost mailing list. It is high volume (over
+              1000 messages per month), very technical, and oriented toward
+              Boost library developers. It is also read by many other members
+              interested in watching the Boost library development process.
+              Virtually all Boost decisions, major or minor, technical or
+              otherwise, are reached via public discussion on this mailing
+              list. It is where the formal reviews of proposed libraries take
+              place. Subscribe or unsubscribe at <a href=
+              "http://lists.boost.org/mailman/listinfo.cgi/boost" class=
+              "external">http://lists.boost.org/mailman/listinfo.cgi/boost</a>.</p>
+
+              <p>When we talk about the "members of Boost", we are talking
+              about those signed up for this main mailing list.</p>
+
+              <p>For those who prefer to participate via an NNTP (<a name=
+              "newsgroup" id="newsgroup"></a>newsgroup) interface, a gateway
+              to the Boost mailing list is available at <a href=
+              "news://news.gmane.org/gmane.comp.lib.boost.devel" class=
+              "external">news://news.gmane.org/gmane.comp.lib.boost.devel</a>.</p>
+
+              <h3><a name="archive" id="archive"></a>Archives for Boost
+              developers list</h3>
+
+              <p>Archives of Boost messages include the <a href=
+              "http://news.gmane.org/thread.php?group=gmane.comp.lib.boost.devel"
+              class="external">Boost GMane NNTP Archive</a> and of course
+              there is a Google search link for our <a href=
+              "http://lists.boost.org/Archives/boost/" class=
+              "external">MailMan Archive</a> on <a href="/">our home
+              page</a>.</p>
+
+              <h2><a name="announce" id="announce"></a>Boost Announce mailing
+              list</h2>
+
+              <p>This is an announce-only list for notification of upcoming
+              software releases and formal reviews of proposed libraries. One
+              to three messages per month.&nbsp; Subscribe or unsubscribe at
+              the <a href=
+              "http://lists.boost.org/mailman/listinfo.cgi/boost-announce"
+              class="external">Boost Announce list home page</a>.</p>
+
+              <h2><a name="interest" id="interest"></a>Boost Interest Mailing
+              List</h2>
+
+              <p>This list is a moderated low-traffic announcement-only list
+              of interest to the Boost community. On topic messages will
+              include announcements of books, magazine articles, papers,
+              talks, seminars, products, tools, events, or conferences on
+              advanced uses of C++, generic/generative/meta-programming, and,
+              of course, the Boost libraries. Off topic will be discussion of
+              any kind. Job postings are accepted at the moderators'
+              discretion. Subscribe or unsubscribe at the <a href=
+              "http://lists.boost.org/mailman/listinfo.cgi/boost-interest"
+              class="external">Boost-Interest home page</a>.</p>
+
+              <h2><a name="projects" id="projects"></a>Project-Specific
+              lists</h2>Several mailing lists have been established for
+              specific Boost projects:
+
+              <h3><a name="jamboost" id="jamboost"></a>Boost.Build list</h3>
+
+              <p>The mailing list for the <a href="../boost-build2/">Boost
+              Build System</a> is located <a href=
+              "http://lists.boost.org/mailman/listinfo.cgi/boost-build"
+              class="external">here</a>. GMane provides <a href=
+              "news://news.gmane.org/gmane.comp.lib.boost.build" class=
+              "external">NNTP access</a> and <a href=
+              "http://news.gmane.org/thread.php?group=gmane.comp.lib.boost.build"
+              class="external">Searchable Archives</a> as well.</p>
+
+              <h3><a name="cmake" id="cmake"></a>Boost CMake list</h3>
+
+              <p>Development of the experimental <a class="external" href=
+              "http://svn.boost.org/trac/boost/wiki/CMake">CMake build
+              system</a> is being coordinated on the <a class="external"
+              href="http://lists.boost.org/mailman/listinfo.cgi/boost-cmake">Boost
+              CMake mailing list</a>. Any questions about CMake should be
+              asked here and not on the main Boost.Build list. GMane provides
+              <a class="external" href=
+              "nntp://news.gmane.org/gmane.comp.lib.boost.cmake">NNTP
+              access</a> and <a class="external" href=
+              "http://dir.gmane.org/gmane.comp.lib.boost.cmake">Searchable
+              Archives</a>.</p>
+
+              <h3><a name="cplussig" id="cplussig"></a>Python C++-Sig (for
+              Boost.Python)</h3>
+
+              <p>The <a href=
+              "http://www.python.org/community/sigs/current/c++-sig/" class=
+              "external">Python C++-sig</a> is not strictly Boost-specific,
+              but nearly all the traffic concerns <a href=
+              "/doc/libs/release/libs/python">Boost.Python</a>. See also the
+              <a href="#langbinding">Language Binding</a> list below. You can
+              join the <a href=
+              "http://mail.python.org/mailman/listinfo/cplusplus-sig" title=
+              "Python C++-sig mailing list">mailing list</a>, GMane provides
+              <a href="news://news.gmane.org/gmane.comp.python.c%2b%2b"
+              class="external">NNTP access</a> and <a href=
+              "http://news.gmane.org/thread.php?group=gmane.comp.python.c%2b%2b"
+              class="external">Searchable Archives</a> as well. There are
+              also searchable archives at <a href=
+              "http://aspn.activestate.com/ASPN/Mail/Browse/Threaded/cpp-sig"
+              class="external">ASPN</a>.</p>
+
+              <h3><a name="langbinding" id="langbinding"></a>Language
+              Binding</h3>
+
+              <p>The <a href=
+              "http://lists.sourceforge.net/lists/listinfo/boost-langbinding"
+              class="external">Language Binding</a> list is for discussion of
+              a generalized framework for binding C++ to other languages and
+              systems based on the technology of <a href=
+              "/doc/libs/release/libs/python">Boost.Python</a> and <a href=
+              "http://luabind.sourceforge.net/" class="external">Luabind</a>.
+              The plan is to provide a single front-end for describing
+              bindings with runtime-pluggable back ends for binding to
+              specific languages. It is <b>highly recommended</b> that new
+              subscribers read through the <a href=
+              "http://news.gmane.org/thread.php?group=gmane.comp.lib.boost.langbinding"
+              class="external">message history</a> <b>from the beginning</b>
+              before posting; it will save time as much design progress has
+              already been made. GMane provides <a href=
+              "news://news.gmane.org/gmane.comp.lib.boost.langbinding" class=
+              "external">NNTP access</a> and <a href=
+              "http://news.gmane.org/thread.php?group=gmane.comp.lib.boost.langbinding"
+              class="external">Searchable Archives</a> as well.</p>
+
+              <h3 id="mpi">Boost.MPI Development</h3>
+
+              <p>A separate developer mailing list for <a href=
+              "/doc/libs/release/libs/mpi/">Boost.MPI</a> specific topics is
+              located <a href=
+              "http://lists.boost.org/mailman/listinfo.cgi/boost-mpi" class=
+              "external">here</a>.</p>
+
+              <h3><a name="spirit" id="spirit"></a>Boost.Spirit lists</h3>
+
+              <p>Spirit has two additional mailing lists. <a href=
+              "https://lists.sourceforge.net/lists/listinfo/spirit-general"
+              class="external">Spirit-general</a> for Spirit users and
+              <a href=
+              "https://lists.sourceforge.net/lists/listinfo/spirit-devel"
+              class="external">Spirit-devel</a> for Spirit developers (open
+              to anyone who wishes to hang out with Spirit coders). Both have
+              <a href="http://www.gmane.org" class="external">GMane</a> NNTP
+              access (<a href=
+              "news://news.gmane.org/gmane.comp.parsers.spirit.general"
+              class="external">Spirit-general</a> and <a href=
+              "news://news.gmane.org/gmane.comp.parsers.spirit.devel" class=
+              "external">Spirit-devel</a>) with searchable archives (
+              <a href="http://news.gmane.org/thread.php?group=gmane.comp.parsers.spirit.general"
+              class="external">Spirit-general</a> and <a href=
+              "http://news.gmane.org/thread.php?group=gmane.comp.parsers.spirit.devel"
+              class="external">Spirit-devel</a>).</p>
+
+              <h3><a name="boostdocs" id="boostdocs"></a>Boost.Documentation
+              list</h3>
+
+              <p>The mailing list for the <a href=
+              "/doc/libs/release/doc/html/boostbook.html">Boost Documentation
+              System</a> is located <a href=
+              "http://lists.boost.org/mailman/listinfo.cgi/boost-docs" class=
+              "external">here</a>. GMane provides <a href=
+              "news://news.gmane.org/gmane.comp.lib.boost.documentation"
+              class="external">NNTP access</a> and <a href=
+              "http://news.gmane.org/thread.php?group=gmane.comp.lib.boost.documentation"
+              class="external">Searchable Archives</a> as well.</p>
+
+              <h3><a name="ublas" id="ublas"></a>uBLAS development
+              (ublas-dev) list</h3>
+
+              <p>A separate user and developer mailing list for <a href=
+              "/doc/libs/release/libs/numeric/ublas/doc/index.htm">Boost
+              uBLAS</a> specific topics is located <a href=
+              "http://lists.boost.org/" class="external">here</a>.</p>
+
+              <h3><a name="thread" id="thread"></a>Thread development
+              (threads-devel) list</h3>
+
+              <p>A separate developer mailing list for <a href=
+              "/doc/libs/release/libs/thread/doc/index.html">Boost Thread</a>
+              specific topics is located <a href=
+              "http://lists.boost.org/mailman/listinfo.cgi/threads-devel">here</a>.</p>
+
+              <p><strong>Important:</strong> This mailing list is for the
+              discussion of the specification and implementation of
+              Boost.Threads only — questions regarding usage should be
+              directed to the <a href="#users">Boost Users</a> list, or the
+              main <a href="#main">Boost developers</a> list.</p>
+
+              <p>GMane provides <a href=
+              "news://news.gmane.org/gmane.comp.lib.boost.threads.devel">NNTP
+              access</a> and <a href=
+              "http://news.gmane.org/thread.php?group=gmane.comp.lib.boost.threads.devel">
+              Searchable Archives</a> as well.</p>
+
+              <h3><a name="testing" id="testing"></a>Testing list</h3>
+
+              <p>The setup, procedures and tools necessary for running Boost
+              regression tests are discussed on <a href=
+              "http://lists.boost.org/mailman/listinfo.cgi/boost-testing"
+              class="external">this list</a>. The list main participants are
+              regression runners - people who run Boost tests on a variety of
+              compilers and platforms, and the maintainers of tools for
+              collecting and processing test results.</p>
+
+              <p><b>Important:</b> questions relevant to a wider audience,
+              including questions about Boost.Test framework or test results
+              for a particular library, should be posted to main development
+              list.<a href=
+              "news://news.gmane.org/gmane.comp.lib.boost.documentation"
+              class="external">NNTP access</a> and <a href=
+              "http://news.gmane.org/gmane.comp.lib.boost.testing" class=
+              "external">Searchable Archives</a> are available on <a href=
+              "http://www.gmane.org" class="external">GMane</a>.</p>
+
+              <h3><a name="commit" id="commit"></a>Boost Subversion Commit
+              Messages</h3>
+
+              <p>The <a href=
+              "http://lists.boost.org/mailman/listinfo.cgi/boost-commit">boost-commit</a>
+              mailing list receives messages whenever a change is committed
+              to the Boost Subversion repository.</p>
+
+              <h3><a name="translation" id="translation"></a>Translation
+              Groups</h3>
+
+              <p>Boost doesn't have the resources to translate the
+              documentation itself, but there is at least one separate group
+              translating the documentation. If you have formed another, tell
+              us on the <a href="#boostdocs">documentation list</a> and we'll
+              add a link.</p>
+
+              <ul>
+                <li>
+                  <a href=
+                  "http://groups.google.com/group/boost_doc_translation">Chinese
+                  translators group</a> (<a href=
+                  "http://code.google.com/p/boost-doc-zh/">main webpage</a>)
+                </li>
+              </ul>
+
+              <h2>Boost <a name="sandbox" id="sandbox"></a>Sandbox</h2>
+
+              <p>In addition to the main <a href=
+              "/users/download/#repository">Boost repository</a>, a separate
+              Sandbox is available for Boost developers wishing to
+              collaborate on projects prior to formal acceptance of a new
+              library.&nbsp; Read-only access is available via Subversion and
+              web browser at <a href=
+              "http://svn.boost.org/svn/boost/sandbox">http://svn.boost.org/svn/boost/sandbox</a>.</p>
+
+              <p>Developer access to the sandbox uses the Subversion
+              repository at <a href=
+              "https://svn.boost.org/svn/boost/sandbox">https://svn.boost.org/svn/boost/sandbox</a>.
+              For more information about the Boost Subversion repository,
+              please see <a href=
+              "http://svn.boost.org">http://svn.boost.org</a>.</p>
+
+              <h2>#boost <a name="IRC" id="IRC">IRC</a> channel</h2>
+
+              <p>In addition to the mailing lists presented above, a #boost
+              IRC channel on <a href="http://freenode.net">freenode</a> is
+              frequented by some boost users. As usual with IRC channels, one
+              should not necessarily expect that his questions will be
+              answered. The channel is not moderated.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="sidebar">
+          <div id="get-boost">
+    <h2><a href="/users/download/"><img src="/gfx/space.png" alt=
+    "Get Boost" /></a></h2>
+  </div>
+
+  <div id="search">
+<!-- Created at http://www.google.com/cse/ -->
+<div id="cse-search-form" style="width: 100%;">Loading</div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript"> 
+  google.load('search', '1', {language : 'en'});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl('011577717147771266991:jigzgqluebe');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.enableSearchboxOnly("http://google.com/cse?cx=011577717147771266991:jigzgqluebe");    
+    customSearchControl.draw('cse-search-form', options);
+  }, true);
+</script>
+<link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
+  </div>
+
+
+          <div id="menu">
+    <ul>
+      <li id="welcome-section-menu">
+        <h4><a href="/" class="internal">Welcome <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/doc/libs/release/more/getting_started/index.html" class=
+    "internal">Getting Started <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/download/" class="internal">Download <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/doc/libs/">Libraries <span class="link">&gt;</span></a></li>
+
+    <li><a href="/community/groups.html">Mailing Lists <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/development/bugs.html" class="internal">Reporting and Fixing
+    Bugs<span class="link">&gt;</span></a></li>
+
+    <li><a href="https://svn.boost.org/trac/boost/" class="external">Wiki<span class=
+    "link">&gt;</span></a></li>
+  </ul>
+</li>
+
+      <li id="boost-section-menu">
+        <h4><a href="/users/index.html" class="internal">Introduction <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/users/download/" class="internal">Download <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/news/" class="internal">News <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/history/" class="internal">Version History
+    <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/license.html" class="internal">License <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/people.html" class="internal">People <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/bibliography.html" class="internal">Bibliography
+    <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/uses.html" class="internal">Who's Using Boost
+    <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/faq.html" class="internal">FAQ <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/proposal.pdf" class="internal">How Boost Started <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/map.html" class="internal">Index <span class=
+    "link">&gt;</span></a></li>
+  </ul>
+</li>
+
+      <li id="community-section-menu">
+        <h4><a href="/community/index.html">Community <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/community/groups.html">Discussion Groups <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/policy.html">Discussion Policy <span class=
+    "link">&gt;</span></a></li>
+
+    <li>
+      <a href="/community/cpp.html">C++ <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/committee.html">Committee Meetings
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/generic_programming.html">Generic Progamming
+        Techniques <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/error_handling.html">Error and Exception
+        Handling <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/exception_safety.html">Exception-Safety in
+        Generic Components <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/counted_body.html">Counted Body Techniques
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href=
+        "/community/implementation_variations.html">Implementation Variations
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/feature_model_diagrams.html">Feature Model
+        Diagrams <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="/community/acknowledgements.html">Acknowledgements <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/groups.html">Mailing Lists <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/moderators.html">Moderators <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/requests.html">Requesting a New Feature
+    <span class="link">&gt;</span></a></li>
+
+    <li>
+      <a href="/community/reviews.html">Reviews <span class=
+      "link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/review_schedule.html">Schedule <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="/community/sandbox.html">Sandbox <span class=
+    "link">&gt;</span></a></li>
+
+    <li>
+      <a href="/community/irc.html">IRC <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/irc_stats_soc.php">Boost SoC Stats
+        <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="/community/gsoc.html">Google Summer of Code <span class=
+      "link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/gsoc_2006_boost_overview.html">2006 Overview
+        <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="http://cppnow.org" target="_blank">C++Now <span class=
+    "link">&gt;</span></a></li>
+
+  </ul>
+</li>
+
+      <li id="development-section-menu">
+        <h4><a href="/development/index.html">Development <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li>
+      <a href="/development/submissions.html">Submissions <span class=
+      "link">&gt;</span></a>
+    </li>
+
+    <li><a href="/development/bugs.html" class="internal">Reporting and Fixing
+    Bugs<span class="link">&gt;</span></a></li>
+
+    <li>
+      <a href="/development/testing.html">Testing <span class=
+      "link">&gt;</span></a>
+
+      <ul>
+        <li><a href=
+        "/development/tests/release/developer/summary.html">Release Summary
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href=
+        "/development/tests/release/developer/issues.html">Release Issues
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/tests/trunk/developer/summary.html">Trunk
+        Summary <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/tests/trunk/developer/issues.html">Trunk
+        Issues <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/running_regression_tests.html">Running
+        Regression Tests <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="/development/requirements.html">Requirements and Guidelines
+    <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/development/test.html">Test policy <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/header.html">Header policy <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/separate_compilation.html">Separate Source
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/reuse.html">Library Reuse <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/int_const_guidelines.html">Coding
+        Guidelines for Integral Constant Expressions <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li>
+      <h3 class="heading">Website</h3>
+
+      <ul>
+        <li><a href="/development/website_updating.html">Updating
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/exemplar.html">Exemplar <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/design_faq.html">Design FAQ <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/webcheck/index.html">Self Check <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+      <li id="documentation-section-menu">
+        <h4><a href="/doc/" class="internal">Documentation <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/doc/libs/release/more/getting_started/">Getting Started
+    <span class="link">&gt;</span></a></li>
+
+    <li>
+      <a href="/doc/libs">Libraries <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/doc/libs/1_54_0/" rel="nofollow">1.54.0 - Current
+        Release <span class="link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_53_0/" rel="nofollow">1.53.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_52_0/" rel="nofollow">1.52.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_51_0/" rel="nofollow">1.51.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_50_0/" rel="nofollow">1.50.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_49_0/" rel="nofollow">1.49.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_48_0/" rel="nofollow">1.48.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_47_0/" rel="nofollow">1.47.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_46_1/" rel="nofollow">1.46.1 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_45_0/" rel="nofollow">1.45.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_44_0/" rel="nofollow">1.44.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_43_0/" rel="nofollow">1.43.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_42_0/" rel="nofollow">1.42.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_41_0/" rel="nofollow">1.41.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_40_0/" rel="nofollow">1.40.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_39_0/" rel="nofollow">1.39.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_38_0/" rel="nofollow">1.38.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_37_0/" rel="nofollow">1.37.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_36_0/" rel="nofollow">1.36.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_35_0/" rel="nofollow">1.35.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_34_1/" rel="nofollow">1.34.1 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_34_0/" rel="nofollow">1.34.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_33_1/" rel="nofollow">1.33.1 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_32_0/" rel="nofollow">1.32.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_31_0/" rel="nofollow">1.31.0 <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="/doc/tools.html">Tools <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/boost-build2/">Boost Build <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/regression/index.html">Regression <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/inspect/index.html">Inspect <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/html/boostbook.html">BoostBook <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/quickbook/index.html">QuickBook <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/bcp/index.html">bcp <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/libs/wave/doc/wave_driver.html">Wave <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/auto_index/">AutoIndex <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+    </ul>
+
+    <div class="box-bottom"></div>
+  </div>
+
+      </div>
+
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div id="footer-left">
+      <div id="revised">
+        <p>Revised $Date: 2012-11-25 15:49:41 -0500 (Sun, 25 Nov 2012) $</p>
+      </div>
+
+      <div id="copyright">
+        <p>Copyright Beman Dawes, David Abrahams, 2001-2005.</p>
+      </div>  <div id="license">
+    <p>Distributed under the <a href="/LICENSE_1_0.txt" class=
+    "internal">Boost Software License, Version 1.0</a>.</p>
+  </div>
+
+    </div>
+
+    <div id="footer-right">
+        <div id="banners">
+    <p id="banner-xhtml"><a href="http://validator.w3.org/check?uri=referer"
+    class="external">XHTML 1.0</a></p>
+
+    <p id="banner-css"><a href=
+    "http://jigsaw.w3.org/css-validator/check/referer" class=
+    "external">CSS</a></p>
+
+    <p id="banner-osi"><a href=
+    "http://www.opensource.org/docs/definition.php" class="external">OSI
+    Certified</a></p>
+  </div>
+
+    </div>
+
+    <div class="clear"></div>
+  </div>
+</body>
+</html>

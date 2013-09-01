@@ -1,0 +1,108 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Chapter&#160;32.&#160;Boost.Tribool - 1.54.0</title>
+<link rel="stylesheet" href="../../doc/src/boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
+<link rel="home" href="index.html" title="The Boost C++ Libraries BoostBook Documentation Subset">
+<link rel="up" href="libraries.html" title="Part&#160;I.&#160;The Boost C++ Libraries (BoostBook Subset)">
+<link rel="prev" href="boost_tr1/testing.html" title="Testing">
+<link rel="next" href="tribool/tutorial.html" title="Tutorial">
+<link rel="icon" href="/favicon.ico" type="image/ico"/><link rel="stylesheet" type="text/css" href="/style-v2/section-basic.css"/></head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">  <div id="boost-common-heading-doc">
+    <div class="heading-inner">
+  <div class="heading-placard"></div>
+
+  <h1 class="heading-title">
+  <a href="/">
+  <img src="/gfx/space.png" alt= "Boost C++ Libraries" class="heading-logo" />
+  <span class="heading-boost">Boost</span>
+  <span class="heading-cpplibraries">C++ Libraries</span>
+  </a></h1>
+
+  <p class="heading-quote">
+  <q>...one of the most highly
+  regarded and expertly designed C++ library projects in the
+  world.</q> <span class="heading-attribution">&mdash; <a href=
+  "http://www.gotw.ca/" class="external">Herb Sutter</a> and <a href=
+  "http://en.wikipedia.org/wiki/Andrei_Alexandrescu" class="external">Andrei
+  Alexandrescu</a>, <a href=
+  "http://safari.awprofessional.com/?XmlId=0321113586" class="external">C++
+  Coding Standards</a></span></p>
+</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33761719-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </div>
+
+  <div id="boost-common-heading-doc-spacer"></div>
+<div class="spirit-nav">
+<a accesskey="p" href="boost_tr1/testing.html"><img src="../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="libraries.html"><img src="../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="tribool/tutorial.html"><img src="../../doc/src/images/next.png" alt="Next"></a>
+</div>
+<div class="chapter">
+<div class="titlepage"><div>
+<div><h2 class="title">
+<a name="tribool"></a>Chapter&#160;32.&#160;Boost.Tribool</h2></div>
+<div><div class="author">
+<h3 class="author">
+<span class="firstname">Douglas</span> <span class="surname">Gregor</span>
+</h3>
+<code class="email">&lt;<a class="email" href="mailto:dgregor%20-at-%20cs.indiana.edu">dgregor -at- cs.indiana.edu</a>&gt;</code>
+</div></div>
+<div><p class="copyright">Copyright &#169; 2002-2004 Douglas Gregor</p></div>
+<div><div class="legalnotice">
+<a name="idp184938112"></a><p>Use, modification and distribution is subject to the Boost
+    Software License, Version 1.0. (See accompanying file
+    <code class="filename">LICENSE_1_0.txt</code> or copy at <a href="/LICENSE_1_0.txt" target="_top">http://www.boost.org/LICENSE_1_0.txt</a>)</p>
+</div></div>
+</div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="section"><a href="tribool.html#tribool.introduction">Introduction</a></span></dt>
+<dt><span class="section"><a href="tribool/tutorial.html">Tutorial</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="tribool/tutorial.html#idp184942000">Basic usage</a></span></dt>
+<dt><span class="section"><a href="tribool/tutorial.html#idp184970384">Renaming the indeterminate state</a></span></dt>
+<dt><span class="section"><a href="tribool/tutorial.html#idp184975552"><code class="computeroutput">tribool</code> input/output</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="tribool/reference.html">Reference</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="tribool/reference.html#header.boost.logic.tribool_hpp">Header &lt;boost/logic/tribool.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="tribool/reference.html#header.boost.logic.tribool_fwd_hpp">Header &lt;boost/logic/tribool_fwd.hpp&gt;</a></span></dt>
+<dt><span class="section"><a href="tribool/reference.html#header.boost.logic.tribool_io_hpp">Header &lt;boost/logic/tribool_io.hpp&gt;</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="tribool/tests.html">Testsuite</a></span></dt>
+<dd><dl><dt><span class="section"><a href="tribool/tests.html#tribool.tests.acceptance">Acceptance tests</a></span></dt></dl></dd>
+</dl>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="tribool.introduction"></a>Introduction</h2></div></div></div>
+<p>The 3-state boolean library contains a single class,
+    <code class="computeroutput"><a class="link" href="boost/logic/tribool.html" title="Class tribool">boost::logic::tribool</a></code>, along with
+    support functions and operator overloads that implement 3-state
+    boolean logic. </p>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"><p><small>Last revised: May 03, 2007 at 03:28:53 GMT</small></p></td>
+<td align="right"><div class="copyright-footer"></div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="boost_tr1/testing.html"><img src="../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="libraries.html"><img src="../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="index.html"><img src="../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="tribool/tutorial.html"><img src="../../doc/src/images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

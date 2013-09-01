@@ -1,0 +1,715 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <title>Boost FAQ</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+  <link rel="icon" href="/favicon.ico" type="image/ico" />
+  <link rel="stylesheet" type="text/css" href="/style-v2/section-boost.css" />
+  <!--[if IE 7]> <style type="text/css"> body { behavior: url(/style-v2/csshover3.htc); } </style> <![endif]-->
+</head><!--
+Note: Editing website content is documented at:
+http://www.boost.org/development/website_updating.html
+-->
+
+<body>
+  <div id="heading">
+    <div class="heading-inner">
+  <div class="heading-placard"></div>
+
+  <h1 class="heading-title">
+  <a href="/">
+  <img src="/gfx/space.png" alt= "Boost C++ Libraries" class="heading-logo" />
+  <span class="heading-boost">Boost</span>
+  <span class="heading-cpplibraries">C++ Libraries</span>
+  </a></h1>
+
+  <p class="heading-quote">
+  <q>...one of the most highly
+  regarded and expertly designed C++ library projects in the
+  world.</q> <span class="heading-attribution">&mdash; <a href=
+  "http://www.gotw.ca/" class="external">Herb Sutter</a> and <a href=
+  "http://en.wikipedia.org/wiki/Andrei_Alexandrescu" class="external">Andrei
+  Alexandrescu</a>, <a href=
+  "http://safari.awprofessional.com/?XmlId=0321113586" class="external">C++
+  Coding Standards</a></span></p>
+</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-33761719-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+  </div>
+
+  <div id="body">
+    <div id="body-inner">
+      <div id="content">
+        <div class="section" id="intro">
+          <div class="section-0">
+            <div class="section-title">
+              <h1>Boost FAQ</h1>
+            </div>
+
+            <div class="section-body">
+              <p class="faq"><span class="faq-question">How do I download the
+              libraries?</span> See the <a href="download">downloads</a>.</p>
+
+              <p class="faq"><span class="faq-question">What do the Boost
+              version numbers mean?</span> The scheme is x.y.z, where x is
+              incremented only for massive changes, such as a reorganization
+              of many libraries, y is incremented whenever a new library is
+              added, and z is incremented for maintenance releases. y and z
+              are reset to 0 if the value to the left changes.</p>
+
+              <p class="faq"><span class="faq-question">Is there any
+              assurance libraries actually work as claimed?</span> No. The
+              review process will hopefully eliminate the most seriously
+              flawed libraries, but a well constructed library with hidden
+              defects is likely to slip through. Encouraging ordinary users
+              to report their experience with a library is intended to
+              address such concerns. Consult the <a href=
+              "../development/testing.html">test results</a> for an
+              indication of how well a library works on specific
+              platforms.</p>
+
+              <p class="faq"><span class="faq-question">How can the Boost
+              libraries be used successfully for important projects?</span>
+              Many of the Boost libraries are actively maintained and
+              improved, so backward compatibility with prior version isn't
+              always possible. Deal with this by freezing the version of the
+              Boost libraries used by your project. Only upgrade at points in
+              your project's life cycle where a bit of change will not cause
+              problems. Individual bug fixes can always be obtained from the
+              boost repository.</p>
+
+              <p class="faq"><span class="faq-question">How can I contribute
+              to development?</span> To participate in development, you need
+              to subscribe to the <a href=
+              "http://lists.boost.org/mailman/listinfo.cgi/boost">Boost
+              developers' list</a>. Once you've done that, some paths to
+              contribution are:</p>
+
+              <ol class="faq">
+                <li>Submit patches for new features or bug fixes. Pick any
+                ticket from <a href="http://svn.boost.org/trac/boost">our bug
+                tracking system</a> and get started. If existing library
+                maintainers don't already know your work, this is a good way
+                to become known as someone they can trust to do good
+                work.</li>
+
+                <li>Become part of a particular library's community, and
+                become known to the library maintainer(s) by participating in
+                design discussions (some libraries, e.g. Spirit, have their
+                <a href="/community/groups.html#projects">own mailing
+                lists</a> where you'd do that).</li>
+
+                <li>Come up with a library idea of your own and begin the
+                <a href="/development/submissions.html">library submission
+                process</a>.</li>
+              </ol>
+
+              <p class="faq"><span class="faq-question">How is a library
+              accepted for posting on the site?</span> See <a href=
+              "/development/submissions.html">Library Submission
+              Process</a></p>
+
+              <p class="faq"><span class="faq-question">How does someone
+              submit a Formal Review comment?</span> Send email to <a href=
+              "mailto:boost@lists.boost.org">boost@lists.boost.org</a>. See
+              the <a href="/community/reviews.html">Formal Review</a> page
+              for more information.</p>
+
+              <p class="faq"><span class="faq-question">How does someone
+              submit a library?</span> See <a href=
+              "/development/requirements.html">Library Guidelines</a></p>
+
+              <p class="faq"><span class="faq-question">Are commercial
+              libraries requiring a fee acceptable?</span> No. However, a
+              library that a commercial enterprise makes available without
+              fee is acceptable. If the description of the library makes a
+              low-key plug for the supplier, that is acceptable as long as
+              the library delivers real value and isn't just a Trojan horse
+              for the plug.</p>
+
+              <p class="faq"><span class="faq-question">Are shareware
+              libraries acceptable?</span> No. Only free libraries will be
+              accepted.</p>
+
+              <p class="faq"><span class="faq-question">Are open source
+              license libraries acceptable?</span> Some are, many are not.
+              Open source licenses often require redistribution or
+              availability of source code, inclusion of license document with
+              machine-executable redistribution, give the initial developer
+              rights to licensee modifications, or need a lawyer to
+              understand. These would be immediate disqualifications for many
+              business, commercial, and consumer applications. Boost aims to
+              avoid subjecting users to hard-to-comply-with license terms.
+              See <a href="/development/requirements.html#License">License
+              requirements</a>.</p>
+
+              <p class="faq">This is subject to review for a particularly
+              important piece of software, or as the industry changes.</p>
+
+              <p class="faq"><span class="faq-question">Must full source code
+              be provided?</span> Yes, these are source code libraries.</p>
+
+              <p class="faq"><span class="faq-question">What about
+              documentation?</span> A very simple library might be accepted
+              with only a well commented header file. For more substantial
+              libraries, some form of documentation is certainly going to be
+              expected. HTML is the preferred form.</p>
+
+              <p class="faq"><span class="faq-question">Are platform specific
+              libraries acceptable?</span> There is a preference for portable
+              libraries. Libraries will be accepted that have portable
+              interfaces but require platform specific implementations, as
+              long as the author supplies implementations for a couple of
+              disparate major operating systems.</p>
+
+              <p class="faq"><span class="faq-question">Must a library do
+              useful work?</span> No. A library meant as a teaching example
+              or demonstration might not actually do any work.</p>
+
+              <p class="faq"><span class="faq-question">Can an existing
+              library be accepted by Boost?</span> Yes, although it would
+              have to be "Boostified" to meet the requirements.&nbsp; The
+              Boost Graph and Regex libraries are examples of libraries which
+              began life elsewhere.</p>
+
+              <p class="faq"><span class="faq-question">Who owns the
+              libraries?</span> Presumably many authors will copyright their
+              libraries. Others authors may wish to place their libraries in
+              the public domain. The Boost.org policy is to only accept
+              libraries with a clear copyright notice and meeting the
+              <a href="/development/requirements.html#License">License
+              requirements</a>. It is up to potential users to decide if the
+              terms acceptable, and not to use libraries with unacceptable
+              copyrights or licenses.</p>
+
+              <p class="faq"><span class="faq-question">Is there a formal
+              relationship between Boost.org and the C++ Standards
+              Committee?</span> No, although there is a strong informal
+              relationship in that many members of the committee participate
+              in Boost, and the people who started Boost were all committee
+              members.</p>
+
+              <p class="faq"><span class="faq-question">Will the Boost.org
+              libraries become part of the next C++ Standard?</span> Some
+              might, someday, but that is up to the standards committee.
+              Committee members who also participate in Boost will definitely
+              be proposing at least some Boost libraries for
+              standardization.</p>
+
+              <p class="faq">Libraries which are "existing practice" are most
+              likely to be accepted by the C++ committee for future
+              standardization. Having a library accepted by Boost is one way
+              to establish existing practice.</p>
+
+              <p class="faq"><span class="faq-question">Where does the name
+              "Boost" come from?</span> Boost began with Robert Klarer and I
+              fantasizing about a new library effort over dinner at a C++
+              committee meeting in Sofia Antipolis, France, in 1998. Robert
+              mentioned that Herb Sutter was working on a spoof proposal for
+              a new language named Booze, which was supposed to be better
+              than Java. Somehow that kicked off the idea of "Boost" as a
+              name. We'd probably had a couple of glasses of good French wine
+              at that point. It was just a working name, but no one ever came
+              up with a replacement. (Beman Dawes)</p>
+
+              <p class="faq"><span class="faq-question">Is the web site a
+              commercial business?</span> No. It is just some people getting
+              together as a kind of cyberspace civic association. If it ever
+              needs to incorporate, it would be as a non-profit
+              organization.</p>
+
+              <p class="faq"><span class="faq-question">Is there any charge
+              for submitting libraries or reviews to Boost.org?</span> No.
+              Unlike the standards committees, you don't have to pay to
+              volunteer!</p>
+
+              <p class="faq"><span class="faq-question">Will the site include
+              material beyond libraries?</span> The main focus is on
+              libraries, but if people contribute occasional articles or
+              other material to make the site more interesting, that could be
+              a nice fit.</p>
+
+              <p class="faq"><span class="faq-question">Why isn't there a
+              separate boost mailing list for my favorite library?</span> One
+              of the reasons for boost's success has been the
+              cross-pollination of ideas between diverse library projects and
+              the occasional look into other threads by otherwise
+              uninterested parties. The more people participate, the less
+              they tend to be annoyed by "noise".</p>
+
+              <p class="faq"><span class="faq-question">How can I cope with
+              the large volume of boost mailing list messages?</span> One
+              approach is to use the "digest" option; that cuts the email
+              blizzard down to several (long) messages per day, so you can
+              glance over the subjects summary at the top and quickly read
+              what you think is important. The "no mail" option turns off
+              list email entirely.</p>
+
+              <p class="faq">Another approach is to follow the list traffic
+              via an NTTP newsgroup reader. See <a href=
+              "/community/groups.html#newsgroup">Mailing List</a> newsgroup
+              information.</p>
+
+              <p class="faq"><span class="faq-question">Why do Boost headers
+              have a .hpp suffix rather than .h or none at all?</span> File
+              extensions communicate the "type" of the file, both to humans
+              and to computer programs. The '.h' extension is used for C
+              header files, and therefore communicates the wrong thing about
+              C++ header files. Using no extension communicates nothing and
+              forces inspection of file contents to determine type. Using
+              '.hpp' unambiguously identifies it as C++ header file, and
+              works well in actual practice. (Rainer Deyke)</p>
+
+              <p class="faq"><span class="faq-question">What should I do if I
+              spot a bug in the Boost code or documentation?</span> See the
+              suggestions on the <a href="/development/bugs.html">Bugs
+              page</a>.</p>
+
+              <p class="faq"><span class="faq-question">How can I request a
+              new feature in a Boost Library?</span> See the <a href=
+              "/community/requests.html">Requesting New Features</a>
+              page.</p>
+
+              <p class="faq"><span class="faq-question">Who's idea was
+              Boost?</span> See the <a href="proposal.pdf">original
+              proposal</a> (PDF).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="sidebar">
+          <div id="get-boost">
+    <h2><a href="/users/download/"><img src="/gfx/space.png" alt=
+    "Get Boost" /></a></h2>
+  </div>
+
+  <div id="search">
+<!-- Created at http://www.google.com/cse/ -->
+<div id="cse-search-form" style="width: 100%;">Loading</div>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript"> 
+  google.load('search', '1', {language : 'en'});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl('011577717147771266991:jigzgqluebe');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.enableSearchboxOnly("http://google.com/cse?cx=011577717147771266991:jigzgqluebe");    
+    customSearchControl.draw('cse-search-form', options);
+  }, true);
+</script>
+<link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
+  </div>
+
+
+          <div id="menu">
+    <ul>
+      <li id="welcome-section-menu">
+        <h4><a href="/" class="internal">Welcome <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/doc/libs/release/more/getting_started/index.html" class=
+    "internal">Getting Started <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/download/" class="internal">Download <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/doc/libs/">Libraries <span class="link">&gt;</span></a></li>
+
+    <li><a href="/community/groups.html">Mailing Lists <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/development/bugs.html" class="internal">Reporting and Fixing
+    Bugs<span class="link">&gt;</span></a></li>
+
+    <li><a href="https://svn.boost.org/trac/boost/" class="external">Wiki<span class=
+    "link">&gt;</span></a></li>
+  </ul>
+</li>
+
+      <li id="boost-section-menu">
+        <h4><a href="/users/index.html" class="internal">Introduction <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/users/download/" class="internal">Download <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/news/" class="internal">News <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/history/" class="internal">Version History
+    <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/license.html" class="internal">License <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/people.html" class="internal">People <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/bibliography.html" class="internal">Bibliography
+    <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/uses.html" class="internal">Who's Using Boost
+    <span class="link">&gt;</span></a></li>
+
+    <li><a href="/users/faq.html" class="internal">FAQ <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/users/proposal.pdf" class="internal">How Boost Started <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/map.html" class="internal">Index <span class=
+    "link">&gt;</span></a></li>
+  </ul>
+</li>
+
+      <li id="community-section-menu">
+        <h4><a href="/community/index.html">Community <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/community/groups.html">Discussion Groups <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/policy.html">Discussion Policy <span class=
+    "link">&gt;</span></a></li>
+
+    <li>
+      <a href="/community/cpp.html">C++ <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/committee.html">Committee Meetings
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/generic_programming.html">Generic Progamming
+        Techniques <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/error_handling.html">Error and Exception
+        Handling <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/exception_safety.html">Exception-Safety in
+        Generic Components <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/counted_body.html">Counted Body Techniques
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href=
+        "/community/implementation_variations.html">Implementation Variations
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/community/feature_model_diagrams.html">Feature Model
+        Diagrams <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="/community/acknowledgements.html">Acknowledgements <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/groups.html">Mailing Lists <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/moderators.html">Moderators <span class=
+    "link">&gt;</span></a></li>
+
+    <li><a href="/community/requests.html">Requesting a New Feature
+    <span class="link">&gt;</span></a></li>
+
+    <li>
+      <a href="/community/reviews.html">Reviews <span class=
+      "link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/review_schedule.html">Schedule <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="/community/sandbox.html">Sandbox <span class=
+    "link">&gt;</span></a></li>
+
+    <li>
+      <a href="/community/irc.html">IRC <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/irc_stats_soc.php">Boost SoC Stats
+        <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="/community/gsoc.html">Google Summer of Code <span class=
+      "link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/community/gsoc_2006_boost_overview.html">2006 Overview
+        <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="http://cppnow.org" target="_blank">C++Now <span class=
+    "link">&gt;</span></a></li>
+
+  </ul>
+</li>
+
+      <li id="development-section-menu">
+        <h4><a href="/development/index.html">Development <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li>
+      <a href="/development/submissions.html">Submissions <span class=
+      "link">&gt;</span></a>
+    </li>
+
+    <li><a href="/development/bugs.html" class="internal">Reporting and Fixing
+    Bugs<span class="link">&gt;</span></a></li>
+
+    <li>
+      <a href="/development/testing.html">Testing <span class=
+      "link">&gt;</span></a>
+
+      <ul>
+        <li><a href=
+        "/development/tests/release/developer/summary.html">Release Summary
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href=
+        "/development/tests/release/developer/issues.html">Release Issues
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/tests/trunk/developer/summary.html">Trunk
+        Summary <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/tests/trunk/developer/issues.html">Trunk
+        Issues <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/running_regression_tests.html">Running
+        Regression Tests <span class="link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li><a href="/development/requirements.html">Requirements and Guidelines
+    <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/development/test.html">Test policy <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/header.html">Header policy <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/separate_compilation.html">Separate Source
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/reuse.html">Library Reuse <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/int_const_guidelines.html">Coding
+        Guidelines for Integral Constant Expressions <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li>
+      <h3 class="heading">Website</h3>
+
+      <ul>
+        <li><a href="/development/website_updating.html">Updating
+        <span class="link">&gt;</span></a></li>
+
+        <li><a href="/development/exemplar.html">Exemplar <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/design_faq.html">Design FAQ <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/development/webcheck/index.html">Self Check <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
+      <li id="documentation-section-menu">
+        <h4><a href="/doc/" class="internal">Documentation <span class=
+  "link">&gt;</span></a></h4>
+
+  <ul>
+    <li><a href="/doc/libs/release/more/getting_started/">Getting Started
+    <span class="link">&gt;</span></a></li>
+
+    <li>
+      <a href="/doc/libs">Libraries <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/doc/libs/1_54_0/" rel="nofollow">1.54.0 - Current
+        Release <span class="link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_53_0/" rel="nofollow">1.53.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_52_0/" rel="nofollow">1.52.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_51_0/" rel="nofollow">1.51.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_50_0/" rel="nofollow">1.50.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_49_0/" rel="nofollow">1.49.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_48_0/" rel="nofollow">1.48.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_47_0/" rel="nofollow">1.47.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_46_1/" rel="nofollow">1.46.1 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_45_0/" rel="nofollow">1.45.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_44_0/" rel="nofollow">1.44.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_43_0/" rel="nofollow">1.43.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_42_0/" rel="nofollow">1.42.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_41_0/" rel="nofollow">1.41.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_40_0/" rel="nofollow">1.40.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_39_0/" rel="nofollow">1.39.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_38_0/" rel="nofollow">1.38.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_37_0/" rel="nofollow">1.37.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_36_0/" rel="nofollow">1.36.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_35_0/" rel="nofollow">1.35.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_34_1/" rel="nofollow">1.34.1 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_34_0/" rel="nofollow">1.34.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_33_1/" rel="nofollow">1.33.1 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_32_0/" rel="nofollow">1.32.0 <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/libs/1_31_0/" rel="nofollow">1.31.0 <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a href="/doc/tools.html">Tools <span class="link">&gt;</span></a>
+
+      <ul>
+        <li><a href="/boost-build2/">Boost Build <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/regression/index.html">Regression <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/inspect/index.html">Inspect <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/doc/html/boostbook.html">BoostBook <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/quickbook/index.html">QuickBook <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/bcp/index.html">bcp <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/libs/wave/doc/wave_driver.html">Wave <span class=
+        "link">&gt;</span></a></li>
+
+        <li><a href="/tools/auto_index/">AutoIndex <span class=
+        "link">&gt;</span></a></li>
+      </ul>
+    </li>
+  </ul>
+</li>
+    </ul>
+
+    <div class="box-bottom"></div>
+  </div>
+
+      </div>
+
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <div id="footer-left">
+      <div id="revised">
+        <p>Revised $Date: 2013-05-19 01:42:58 -0400 (Sun, 19 May 2013) $</p>
+      </div>
+
+      <div id="copyright">
+        <p>Copyright Beman Dawes 2001.</p>
+      </div>  <div id="license">
+    <p>Distributed under the <a href="/LICENSE_1_0.txt" class=
+    "internal">Boost Software License, Version 1.0</a>.</p>
+  </div>
+
+    </div>
+
+    <div id="footer-right">
+        <div id="banners">
+    <p id="banner-xhtml"><a href="http://validator.w3.org/check?uri=referer"
+    class="external">XHTML 1.0</a></p>
+
+    <p id="banner-css"><a href=
+    "http://jigsaw.w3.org/css-validator/check/referer" class=
+    "external">CSS</a></p>
+
+    <p id="banner-osi"><a href=
+    "http://www.opensource.org/docs/definition.php" class="external">OSI
+    Certified</a></p>
+  </div>
+
+    </div>
+
+    <div class="clear"></div>
+  </div>
+</body>
+</html>
