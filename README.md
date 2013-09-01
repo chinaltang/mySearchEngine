@@ -10,15 +10,18 @@ PART I.
 --Crawler.cpp
 --Indexer.h
 --Indexer.cpp
+
 PART II
 	Test example files of the thread pool, crawler and Indexer.
 --ThreadPoolTest.cpp
 --CrawlerTest.cpp
 --IndexerTest.cpp
+
 PART III
 	Executable binary files. If you have not installed the needed boost library, it may not run as expected.
 --CrawlerTest
 --IndexerTest
+
 PART IV
 	Output files of the crawler and indexer during run. Including a depository of pages crawled from www.boost.org, serialized posting index(.idx) and doc set(.dst).
 --Sat_Aug_24_15_48_12_2013_crawled
