@@ -1,7 +1,7 @@
 /*******************************Copyright (c)*********************************************
-**Copyright Owner:			Cory Tang 
+**Copyright Owner:	Cory Tang 
 **Department:           University of Electronic Science and Technology of China  
-**Email:								chong.tang@live.cn
+**Email:		chong.tang@live.cn
 **--------------------------- File Info ---------------------------------------------------
 ** File name:           CrawlerTest.cpp
 ** Last modified Date:  2013-08-29
