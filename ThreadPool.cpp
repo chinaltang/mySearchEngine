@@ -93,13 +93,12 @@ T ThreadPool<T>::threadpool_get_job(pthread_t tId)
 template <class T>
 void* ThreadPool<T>::threadpool_caller(void *arg)
 {
-//	cout<<"in threadpool_caller"<<endl;
+
 	ThreadPool<T>* pTP = (ThreadPool<T> *)arg;
 	while(1)
 	{
-//		cout<<"in threadpool_caller while(1)"<<endl;
 		pthread_mutex_lock(&(pTP->m_jobQueueMutex));
-//		cout<<"in threadpool_caller while(1) after lock"<<endl;
+
 		while(((pTP->m_jobToDoQueue).empty() == true) &&(pTP->m_threadpoolIsClosed == false))
 		{
 			
@@ -125,7 +124,6 @@ void* ThreadPool<T>::threadpool_caller(void *arg)
 		
 		pthread_mutex_unlock(&(pTP->m_jobQueueMutex));
 		
-//		cout<<"Before call callee"<<endl;
 		if((pTP->m_userCallee) != NULL)
 			(*(pTP->m_userCallee))(job, pTP);
 
@@ -135,9 +133,8 @@ void* ThreadPool<T>::threadpool_caller(void *arg)
 template <class T>
 int ThreadPool<T>::threadpool_add_job_no_check(const T& job)
 {
-	cout<<"In threadpool_add_job start"<<endl;
+
 	pthread_mutex_lock(&m_jobQueueMutex);
-	cout<<"In threadpool_add_job after lock"<<endl;
 	
 	while((m_jobToDoQueue.size() == m_maxJobQueueLen) && (m_threadpoolIsClosed == false))
 	{	
@@ -159,7 +156,6 @@ int ThreadPool<T>::threadpool_add_job_no_check(const T& job)
 	}
 	pthread_mutex_unlock(&m_jobQueueMutex);
 
-//	cout<<"In threadpool_add_job after unlock"<<endl;
 	return 1;
 }
 
